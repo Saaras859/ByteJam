@@ -40,7 +40,7 @@ layout: default
     font-family: Verdana, sans-serif;
   }
 
-  .playercardsbox, .dealercardsbox {
+  .playercardsbox, .dealercardsbox, .playerscorebox, .dealerscorebox {
     position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -50,14 +50,40 @@ layout: default
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-size: 30px;
     font-family: Verdana, sans-serif;
+    overflow-y: auto; /* Enable vertical scroll if needed */
   }
 
-  .playercardsbox {
-    left: 30%; /* Adjusted to 30% width */
+  .playercardsbox, .playerscorebox {
+    left: 30%;
+    max-height: 100%; /* Allow it to grow to the full height of the viewport */
   }
 
-  .dealercardsbox {
+  .dealercardsbox, .dealerscorebox {
     left: 70%;
+    max-height: 100%;
+  }
+
+  .playerscorebox, .dealerscorebox {
+    position: fixed;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 30px;
+    font-family: Verdana, sans-serif;
+  }
+
+  .result {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-family: Verdana, sans-serif;
+    color: red;
+    display: none;
   }
 
   .hitbutton {
@@ -86,6 +112,13 @@ layout: default
   <div class="dealercardsbox" id="dealercardsbox">
     <p><strong>Dealer Cards:</strong><br><span id="dealercard1"></span><br><span id="dealercard2"></span></p>
   </div>
+  <div class="playerscorebox" id="playerscorebox">
+    <p><strong>Player Score:</strong><br><span id="playerscore"></span></p>
+  </div>
+  <div class="dealerscorebox" id="dealerscorebox">
+    <p><strong>Dealer Score:</strong><br><span id="dealerscore"></span></p>
+  </div>
+  <div class="result" id="result">Bust!</div>
   <div>
     <button class="hitbutton" onclick="getplayercard()">Hit</button>
   </div>
@@ -94,6 +127,7 @@ layout: default
   var cardcounter = 52;
   var playercardcounter = 0;
   var dealercardcounter = 0;
+  var playerBusted = false;
 
   function generatecards() {
     var numbers = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -140,18 +174,92 @@ layout: default
     dealercardcounter = 2;
   }
 
-  playercards();
-  dealercards();
+  function calculatePlayerScore() {
+    var playerCards = document.getElementById("playercardsbox").textContent;
+    var cardValues = playerCards.match(/\d+|A|J|Q|K/g);
+    var sum = 0;
 
-  function getplayercard() {
-    tempnum = Math.floor(Math.random() * cardcounter);
-    card = deck[tempnum];
-    cardcounter -= 1;
-    cardElement = document.getElementById("playercardsbox");
-    cardElement.innerHTML += card + "<br>";
-    playercardcounter += 1;
+    if (cardValues) {
+      for (var i = 0; i < cardValues.length; i++) {
+        var value = 0;
+        if (cardValues[i] === "A") {
+          value = 11;
+        } else if (["J", "Q", "K"].includes(cardValues[i])) {
+          value = 10;
+        } else {
+          value = parseInt(cardValues[i]);
+        }
+        sum += value;
+      }
+    }
+
+    // Reassign value of Ace if needed
+    for (var i = 0; i < cardValues.length; i++) {
+      if (cardValues[i] === "A" && sum > 21) {
+        sum -= 10; // Reassign Ace value to 1
+      }
+    }
+
+    document.getElementById("playerscore").innerText = sum;
+    return sum;
   }
 
+  function calculateDealerScore() {
+    var dealerCards = document.getElementById("dealercardsbox").textContent;
+    var cardValues = dealerCards.match(/\d+|A|J|Q|K/g);
+    var sum = 0;
+
+    if (cardValues) {
+      for (var i = 0; i < cardValues.length; i++) {
+        var value = 0;
+        if (cardValues[i] === "A") {
+          value = 11;
+        } else if (["J", "Q", "K"].includes(cardValues[i])) {
+          value = 10;
+        } else {
+          value = parseInt(cardValues[i]);
+        }
+        sum += value;
+      }
+    }
+
+    // Reassign value of Ace if needed
+    for (var i = 0; i < cardValues.length; i++) {
+      if (cardValues[i] === "A" && sum > 21) {
+        sum -= 10; // Reassign Ace value to 1
+      }
+    }
+
+    document.getElementById("dealerscore").innerText = sum;
+    return sum;
+  }
+
+  function getplayercard() {
+    if (!playerBusted) {
+      tempnum = Math.floor(Math.random() * cardcounter);
+      card = deck[tempnum];
+      cardcounter -= 1;
+      cardElement = document.getElementById("playercardsbox");
+      cardElement.innerHTML += card + "<br>";
+      playercardcounter += 1;
+
+      var playerScore = calculatePlayerScore();
+      if (playerScore > 21) {
+        handlePlayerBust();
+      }
+    }
+  }
+
+  function handlePlayerBust() {
+    playerBusted = true;
+    document.getElementById("result").innerText = "Bust!";
+    document.getElementById("result").style.display = "block";
+  }
+
+  playercards();
+  dealercards();
+  calculatePlayerScore();
+  calculateDealerScore();
 </script>
 </body>
 </html>
