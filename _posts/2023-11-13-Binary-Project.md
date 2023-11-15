@@ -50,9 +50,6 @@ layout: default
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-size: 30px;
     font-family: Verdana, sans-serif;
-    transition: max-height 0.5s; /* Added transition for smooth height change */
-    max-height: 300px; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scroll if needed */
   }
 
   .playercardsbox {
@@ -99,7 +96,7 @@ layout: default
   var dealercardcounter = 0;
 
   function generatecards() {
-    var numbers = ["0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1010", "1010", "1010", "1011"];
+    var numbers = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
     var suits = ["♠︎", "♥︎", "♦︎", "♣︎"];
     var cards = [];
     for (let i = 0; i < numbers.length; i++) {
@@ -153,10 +150,6 @@ layout: default
     cardElement = document.getElementById("playercardsbox");
     cardElement.innerHTML += card + "<br>";
     playercardcounter += 1;
-
-    // Dynamically adjust the height of the playercardsbox
-    var playercardsbox = document.getElementById("playercardsbox");
-    playercardsbox.style.maxHeight = (playercardcounter * 30) + 'px'; // Assuming 30px is the height of each card
   }
 
 </script>
