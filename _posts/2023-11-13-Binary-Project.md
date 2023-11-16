@@ -298,7 +298,6 @@ layout: default
                 getdealercard();
             }
         }
-
         // Compare scores after the dealer's final draw
         compareScores();
     }
@@ -322,7 +321,6 @@ layout: default
     function compareScores() {
         var playerScore = calculatePlayerScore();
         var dealerScore = calculateDealerScore();
-
         // Check for bust, win, tie, or loss
         if (playerScore > 21) {
             handlePlayerBust();
@@ -365,18 +363,15 @@ layout: default
         } else if (["J", "Q", "K", "10"].includes(decimalnum[0])) {
             value = 10;
         }
-
         // Determine the suit of the card
         if (decimalnum[1] == 0) {
             var suit = decimalnum[2];
         } else {
             var suit = decimalnum[1];
         }
-
         // Convert the card value to a decimal number
         var decimalNumber = parseInt(value);
         var decimaltemp = parseInt(value);
-
         // Convert the decimal number to binary using bitwise operations
         var binaryResult = "";
         while (decimalNumber > 0) {
@@ -384,18 +379,15 @@ layout: default
             binaryResult = remainder + binaryResult;
             decimalNumber = Math.floor(decimalNumber / 2);
         }
-
         // Handle special case when the card value is 0
         if (decimaltemp == 0) {
             binaryResult = "0";
         }
-
         // Ensure the binary representation is 5 digits long and append the suit
         var output = String(binaryResult) + suit;
         while (output.length != 5) {
             output = "0" + output;
         }
-
         return output;
     }
 
@@ -409,12 +401,10 @@ layout: default
             binaryResult = remainder + binaryResult;
             decimalNumber = Math.floor(decimalNumber / 2);
         }
-
         // Handle special case when the decimal number is 0
         if (decimaltemp == 0) {
             binaryResult = "0";
         }
-
         return binaryResult;
     }
 
