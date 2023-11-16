@@ -18,6 +18,7 @@ layout: default
     background-color: #8ec1da;
     background-image: url("https://static.vecteezy.com/system/resources/previews/016/124/733/non_2x/poker-and-casino-playing-card-black-background-vector.jpg");
     background-position: center bottom;
+  }
 
   .title {
     position: fixed;
@@ -86,6 +87,11 @@ layout: default
     font-size: 30px;
     font-family: Verdana, sans-serif;
   }
+
+  .hitbutton:hover, .standbutton:hover, .resetbutton:hover {
+    background-color: rgba(38, 152, 255, 0.3) !important;
+}
+
 
   .standbutton {
     top: 72%
@@ -366,6 +372,7 @@ layout: default
       console.log(output)
       return output
   }
+  }
 
   function todecimal(binarynum) {
     lastchar = binarynum.charAt(binarynum.length - 1)
@@ -373,7 +380,6 @@ layout: default
     // Convert binary to decimal using the parseInt function
     var decimalResult = parseInt(binaryNumber, 2);
     return String(decimalResult);
-  }
   }
 
 playercards();
