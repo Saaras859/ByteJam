@@ -258,14 +258,14 @@ layout: default
   }
 
   function stand() {
-    document.getElementById("result").style.display = "none"; // Hide any previous results
-
     // Execute dealer logic
-    if (calculateDealerScore() > calculatePlayerScore()) {
+    if (!playerBusted) {
+      if (calculateDealerScore() > calculatePlayerScore()) {
       compareScores()
-    }
-    while (calculateDealerScore() < 17) {
-      getdealercard();
+      }
+      while (calculateDealerScore() < 17) {
+        getdealercard();
+      }
     }
 
     // Compare scores and determine the winner
