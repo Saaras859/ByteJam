@@ -159,10 +159,10 @@ layout: default
   function playercards() {
     num1 = Math.floor(Math.random() * 52);
     num2 = Math.floor(Math.random() * 51);
-    card1 = deck[num1];
+    card1 = deck[num1]//tobinary(deck[num1]);
     deck.splice(num1, 1);
     cardcounter -= 1;
-    card2 = deck[num2];
+    card2 = deck[num2]//tobinary(deck[num2]);
     cardcounter -= 1;
     deck.splice(num2, 1);
     card1Element = document.getElementById("playercardsbox");
@@ -249,7 +249,8 @@ layout: default
   function getplayercard() {
     if (!playerBusted) {
       tempnum = Math.floor(Math.random() * cardcounter);
-      card = deck[tempnum];
+      temp = deck[tempnum];
+      card = temp//tobinary(temp)
       cardcounter -= 1;
       cardElement = document.getElementById("playercardsbox");
       cardElement.innerHTML += card + "<br>";
@@ -332,6 +333,60 @@ layout: default
     dealercards();
   }
 
+  function tobinary(decimalnum) {
+    value = decimalnum
+    if (decimalnum[0] === "A") {
+      value = 11;
+    } 
+    else if (["J", "Q", "K"].includes(decimalnum[0])) {
+      value = 10;
+    }
+    console.log(decimalnum)
+    if (decimalnum[1] == 0) {
+      lastchar = decimalnum[2]
+    }
+    else {
+      lastchar = decimalnum[1]
+    }
+    decimalNumber = parseInt(value)
+    decimaltemp = parseInt(value)
+    // Convert decimal to binary using bitwise operations
+    let binaryResult = "";
+    while (decimalNumber > 0) {
+        // Get the remainder when dividing by 2 (0 or 1)
+        let remainder = decimalNumber % 2;
+        // Add the remainder to the front of the result string
+        binaryResult = remainder + binaryResult;
+        // Update decimal number by integer division
+        decimalNumber = Math.floor(decimalNumber / 2);
+    }
+    if (decimaltemp == 0) {
+        binaryResult = "0";
+    }
+    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    console.log(lastchar)
+    if (lastchar in numbers) {
+      console.log(String(binaryResult) + lastchar)
+      return String(binaryResult) + lastchar;
+    }
+    else {
+      var output = String(binaryResult) + lastchar
+      console.log("test1")
+      while (output.length != 5) {
+        output = "0" + output
+      }
+      console.log(output)
+      return output
+  }
+
+  function todecimal(binarynum) {
+    lastchar = binarynum.charAt(binarynum.length - 1)
+    binaryNumber = parseInt(binarynum)
+    // Convert binary to decimal using the parseInt function
+    var decimalResult = parseInt(binaryNumber, 2);
+    return String(decimalResult);
+  }
+  }
 
 playercards();
 dealercards();
