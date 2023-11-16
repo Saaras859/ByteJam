@@ -65,7 +65,7 @@ layout: default
 
   .playerscorebox, .dealerscorebox {
     position: fixed;
-    top: 85%;
+    top: 78%;
     transform: translate(-50%, -50%);
     background-color: rgba(128, 128, 128, 0.5);
     padding: 20px;
@@ -77,18 +77,17 @@ layout: default
 
   .result {
     position: fixed;
-    top: 50%;
+    top: 43%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 50px;
+    font-size: 65px;
     font-family: Verdana, sans-serif;
     color: red;
     display: none;
   }
 
-  .hitbutton {
+  .hitbutton, .standbutton, .resetbutton {
     position: fixed;
-    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(38, 152, 255, 0.5);
@@ -98,6 +97,18 @@ layout: default
     border-radius: 10px;
     font-size: 30px;
     font-family: Verdana, sans-serif;
+  }
+
+  .standbutton {
+    top: 72%
+  }
+
+  .hitbutton {
+    top: 60%
+  }
+  .resetbutton {
+    top: 84%;
+    display: block
   }
 </style>
 </head>
@@ -110,7 +121,7 @@ layout: default
     <p><strong>Player Cards:</strong></p>
   </div>
   <div class="dealercardsbox" id="dealercardsbox">
-    <p><strong>Dealer Cards:</strong><br><span id="dealercard1"></span><br><span id="dealercard2"></span></p>
+    <p><strong>Dealer Cards:</strong></p>
   </div>
   <div class="playerscorebox" id="playerscorebox">
     <p><strong>Player Score:</strong><br><span id="playerscore"></span></p>
@@ -121,6 +132,8 @@ layout: default
   <div class="result" id="result">Bust!</div>
   <div>
     <button class="hitbutton" onclick="getplayercard()">Hit</button>
+    <button class="standbutton" onclick="stand()">Stand</button>
+    <button class="resetbutton" onclick="resetGame()">Reset</button>
   </div>
 
 <script>
@@ -156,6 +169,7 @@ layout: default
     card1Element.innerHTML += card1 + "<br>";
     card1Element.innerHTML += card2 + "<br>";
     playercardcounter = 2;
+    calculatePlayerScore()
   }
 
   function dealercards() {
@@ -167,11 +181,11 @@ layout: default
     dealercard2 = deck[num2];
     cardcounter -= 1;
     deck.splice(num2, 1);
-    dealercard1Element = document.getElementById("dealercard1");
-    dealercard2Element = document.getElementById("dealercard2");
-    dealercard1Element.innerHTML = dealercard1;
-    dealercard2Element.innerHTML = dealercard2;
+    dealercard1Element = document.getElementById("dealercardsbox");
+    dealercard1Element.innerHTML += dealercard1 + "<br>";
+    dealercard1Element.innerHTML += dealercard2 + "<br>";
     dealercardcounter = 2;
+    calculateDealerScore()
   }
 
   function calculatePlayerScore() {
@@ -222,14 +236,12 @@ layout: default
         sum += value;
       }
     }
-
     // Reassign value of Ace if needed
     for (var i = 0; i < cardValues.length; i++) {
       if (cardValues[i] === "A" && sum > 21) {
         sum -= 10; // Reassign Ace value to 1
       }
     }
-
     document.getElementById("dealerscore").innerText = sum;
     return sum;
   }
@@ -256,10 +268,75 @@ layout: default
     document.getElementById("result").style.display = "block";
   }
 
-  playercards();
-  dealercards();
-  calculatePlayerScore();
-  calculateDealerScore();
+  function stand() {
+    document.getElementById("result").style.display = "none"; // Hide any previous results
+
+    // Execute dealer logic
+    if (calculateDealerScore() > calculatePlayerScore()) {
+      compareScores()
+    }
+    while (calculateDealerScore() < 17) {
+      getdealercard();
+    }
+
+    // Compare scores and determine the winner
+    compareScores();
+  }
+
+  function getdealercard() {
+    tempnum = Math.floor(Math.random() * cardcounter);
+    card = deck[tempnum];
+    cardcounter -= 1;
+    cardElement = document.getElementById("dealercardsbox");
+    cardElement.innerHTML += card + "<br>";
+
+    calculateDealerScore();
+  }
+
+  function compareScores() {
+    var playerScore = calculatePlayerScore();
+    var dealerScore = calculateDealerScore();
+
+    if (playerScore > 21) {
+      handlePlayerBust();
+    } else if (dealerScore > 21 || playerScore > dealerScore) {
+      document.getElementById("result").innerText = "You Win!";
+      document.getElementById("result").style.display = "block";
+    } else if (playerScore === dealerScore) {
+      document.getElementById("result").innerText = "It's a Tie!";
+      document.getElementById("result").style.display = "block";
+    } else {
+      document.getElementById("result").innerText = "You Lose!";
+      document.getElementById("result").style.display = "block";
+    }
+  }
+  function resetGame() {
+    // Reset card counters
+    cardcounter = 52;
+    playercardcounter = 0;
+    dealercardcounter = 0;
+    // Clear player and dealer cards
+    document.getElementById("playercardsbox").innerHTML = "<p><strong>Player Cards:</strong></p>";
+    document.getElementById("dealercardsbox").innerHTML = "<p><strong>Dealer Cards:</strong></p>";
+    // Reset scores
+    document.getElementById("playerscore").innerText = "";
+    document.getElementById("dealerscore").innerText = "";
+    // Hide result message
+    document.getElementById("result").style.display = "none";
+    // Reset bust
+    playerBusted = false
+    // Generate a new deck of cards
+    deck = generatecards();
+    // Deal new cards
+    playercards();
+    dealercards();
+  }
+
+
+playercards();
+dealercards();
+calculatePlayerScore();
+calculateDealerScore();
 </script>
 </body>
 </html>
