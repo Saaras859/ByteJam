@@ -327,20 +327,20 @@ layout: default
     dealercards();
   }
 
-  function tobinary(decimalnum) {
+  function cardtobinary(decimalnum) {
     value = decimalnum
     if (decimalnum[0] === "A") {
       value = 11;
     } 
-    else if (["J", "Q", "K"].includes(decimalnum[0])) {
+    else if (["J", "Q", "K", "10"].includes(decimalnum[0])) {
       value = 10;
     }
     console.log(decimalnum)
     if (decimalnum[1] == 0) {
-      lastchar = decimalnum[2]
+      suit = decimalnum[2]
     }
     else {
-      lastchar = decimalnum[1]
+      suit = decimalnum[1]
     }
     decimalNumber = parseInt(value)
     decimaltemp = parseInt(value)
@@ -357,28 +357,41 @@ layout: default
     if (decimaltemp == 0) {
         binaryResult = "0";
     }
-    var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    console.log(lastchar)
-    if (lastchar in numbers) {
-      console.log(String(binaryResult) + lastchar)
-      return String(binaryResult) + lastchar;
+    //console.log(suit)
+    var output = String(binaryResult) + suit
+    while (output.length != 5) {
+    output = "0" + output
     }
-    else {
-      var output = String(binaryResult) + lastchar
-      console.log("test1")
-      while (output.length != 5) {
-        output = "0" + output
-      }
-      console.log(output)
-      return output
+    //console.log(output)
+    return output
   }
+  
+  function tobinary(decimalnum) {
+    decimalNumber = parseInt(value)
+    decimaltemp = parseInt(value)
+    let binaryResult = "";
+    while (decimalNumber > 0) {
+        // Get the remainder when dividing by 2 (0 or 1)
+        let remainder = decimalNumber % 2;
+        // Add the remainder to the front of the result string
+        binaryResult = remainder + binaryResult;
+        // Update decimal number by integer division
+        decimalNumber = Math.floor(decimalNumber / 2);
+    }
+    if (decimaltemp == 0) {
+        binaryResult = "0";
+    }
+    //console.log(binaryResult)
+    return binaryResult
+  }
+
+  function cardtodecimal(binarynum) {
+
   }
 
   function todecimal(binarynum) {
-    lastchar = binarynum.charAt(binarynum.length - 1)
-    binaryNumber = parseInt(binarynum)
     // Convert binary to decimal using the parseInt function
-    var decimalResult = parseInt(binaryNumber, 2);
+    var decimalResult = parseInt(binarynum, 2);
     return String(decimalResult);
   }
 
