@@ -18,18 +18,6 @@ layout: default
     background-color: #8ec1da;
     background-image: url("https://static.vecteezy.com/system/resources/previews/016/124/733/non_2x/poker-and-casino-playing-card-black-background-vector.jpg");
     background-position: center bottom;
-    animation: animatedBackground 20s linear infinite;
-    -webkit-animation: animatedBackground 20s linear infinite;
-  }
-
-  @keyframes animatedBackground {
-    from { background-position: 0 100%; }
-    to { background-position: 100% 100%; }
-  }
-  @-webkit-keyframes animatedBackground {
-    from { background-position: 0 100%; }
-    to { background-position: 100% 100%; }
-  }
 
   .title {
     position: fixed;
