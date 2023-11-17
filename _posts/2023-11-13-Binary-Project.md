@@ -38,11 +38,11 @@ layout: default
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             font-size: 30px;
             font-family: Verdana, sans-serif;
-            overflow-y: auto; /* Enable vertical scroll if needed */
+            overflow-y: auto; /*Enable vertical scroll if needed */
         }
         .playercardsbox, .playerscorebox {
             left: 30%;
-            max-height: 100%; /* Allow it to grow to the full height of the viewport */
+            max-height: 100%; /* Allow it to grow to the full height of the viewport*/
         }
         .dealercardsbox, .dealerscorebox {
             left: 70%;
@@ -152,8 +152,8 @@ layout: default
     // Function to deal initial cards to the player
     function playercards() {
         // Generate random indices for two cards
-        var num1 = Math.floor(Math.random() * 52);
-        var num2 = Math.floor(Math.random() * 51);
+        var num1 = Math.floor(Math.random()*52);
+        var num2 = Math.floor(Math.random()*51);
         // Convert cards to binary and remove them from the deck
         var card1 = cardtobinary(deck[num1]);
         deck.splice(num1, 1);
@@ -172,8 +172,8 @@ layout: default
     // Function to deal initial cards to the dealer
     function dealercards() {
         // Generate random indices for two cards
-        var num1 = Math.floor(Math.random() * 50);
-        var num2 = Math.floor(Math.random() * 49);
+        var num1 = Math.floor(Math.random()*50);
+        var num2 = Math.floor(Math.random()*49);
         // Convert cards to binary and remove them from the deck
         var dealercard1 = cardtobinary(deck[num1]);
         deck.splice(num1, 1);
