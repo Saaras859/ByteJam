@@ -28,9 +28,9 @@ layout: default
             font-size: 80px;
             font-family: Verdana, sans-serif;
         }
-        .playercardsbox, .dealercardsbox, .playerscorebox, .dealerscorebox {
+        .playercardsbox, .dealercardsbox {
             position: fixed;
-            top: 72%;
+            top: 77%;
             transform: translate(-50%, -50%);
             background-color: rgba(128, 128, 128, 0.5);
             padding: 20px;
@@ -40,28 +40,17 @@ layout: default
             font-family: Verdana, sans-serif;
             overflow-y: auto; /*Enable vertical scroll if needed */
         }
-        .playercardsbox, .playerscorebox {
+        .playercardsbox {
             left: 30%;
             max-height: 100%; /* Allow it to grow to the full height of the viewport*/
         }
-        .dealercardsbox, .dealerscorebox {
+        .dealercardsbox {
             left: 70%;
             max-height: 100%;
         }
-        .playerscorebox, .dealerscorebox {
-            position: fixed;
-            top: 78%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(128, 128, 128, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            font-size: 30px;
-            font-family: Verdana, sans-serif;
-        }
         .result {
             position: fixed;
-            top: 37%;
+            top: 34%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 150px;
@@ -94,9 +83,26 @@ layout: default
             top: 84%;
             display: block
         }
+        .playersumbox, .dealersumbox {
+            position: fixed;
+            top: 53%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(128, 128, 128, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 30px;
+            font-family: Verdana, sans-serif;
+            display: none;
+        }
+        .playersumbox {
+            left: 30%;
+        }
+        .dealersumbox {
+            left: 70%;
+        }
     </style>
 </head>
-
 <body>
 <div>
     <!-- Title of the game -->
@@ -110,15 +116,13 @@ layout: default
     <!-- Dealer's card box with placeholder text -->
     <p><strong>Dealer Cards:</strong></p>
 </div>
-<!--
-<div class="playerscorebox" id="playerscorebox">
-    <p><strong>Player Score:</strong><br><span id="playerscore"></span></p>
-</div>
-<div class="dealerscorebox" id="dealerscorebox">
-    <p><strong>Dealer Score:</strong><br><span id="dealerscore"></span></p>
-</div>
--->
 <div class="result" id="result">Bust!</div>
+<div class="playersumbox" id="playersumbox">
+    <p><strong></strong></p>
+</div>
+<div class="dealersumbox" id="dealersumbox">
+    <p><strong></strong></p>
+</div>
 <div>
     <!-- Buttons for player actions -->
     <button class="hitbutton" onclick="getplayercard()">Hit</button>
@@ -283,6 +287,8 @@ layout: default
         playerBusted = true;
         document.getElementById("result").innerText = "Bust!";
         document.getElementById("result").style.display = "block";
+        // Call the displaySums function
+        displaySums();
     }
 
     // Function to handle player's stand action
@@ -324,15 +330,19 @@ layout: default
         // Check for bust, win, tie, or loss
         if (playerScore > 21) {
             handlePlayerBust();
-        } else if (dealerScore > 21 || playerScore > dealerScore) {
-            document.getElementById("result").innerText = "You Win!";
-            document.getElementById("result").style.display = "block";
-        } else if (playerScore === dealerScore) {
-            document.getElementById("result").innerText = "It's a Tie!";
-            document.getElementById("result").style.display = "block";
         } else {
-            document.getElementById("result").innerText = "You Lose!";
+            if (dealerScore > 21 || playerScore > dealerScore) {
+                document.getElementById("result").innerText = "You Win!";
+            } else if (playerScore === dealerScore) {
+                document.getElementById("result").innerText = "It's a Tie!";
+            } else {
+                document.getElementById("result").innerText = "You Lose!";
+            }
+
             document.getElementById("result").style.display = "block";
+
+            // Display the sums
+            displaySums();
         }
     }
 
@@ -347,6 +357,8 @@ layout: default
         //document.getElementById("playerscore").innerText = "";
         //document.getElementById("dealerscore").innerText = "";
         document.getElementById("result").style.display = "none";
+        document.getElementById("playersumbox").style.display = "none";
+        document.getElementById("dealersumbox").style.display = "none";
         playerBusted = false;
         // Regenerate the deck and deal initial cards
         deck = generatecards();
@@ -417,6 +429,36 @@ layout: default
         var decimalResult = parseInt(binarynum, 2);
         return decimalResult;
     }
+
+    function calculateSumInBinary(cardsboxId) {
+        var cardValues = document.getElementById(cardsboxId).textContent.match(/\d+|A|J|Q|K/g);
+        var sum = 0;
+        if (cardValues) {
+            for (var i = 0; i < cardValues.length; i++) {
+                var value = (cardValues[i] === "A") ? 11 : (["J", "Q", "K", "10"].includes(cardValues[i]) ? 10 : parseInt(cardValues[i]));
+                sum += todecimal(value);
+            }
+        }
+        // Convert the sum to binary
+        return tobinary(sum);
+    }
+
+    function displaySums() {
+        // Display the sum boxes
+        document.getElementById("playersumbox").style.display = "block";
+        document.getElementById("dealersumbox").style.display = "block";
+
+        // Calculate and display player sum in binary
+        var playerSum = calculateSumInBinary("playercardsbox");
+        var playerSumdecimal = todecimal(playerSum)
+        document.getElementById("playersumbox").innerText = "Player Sum: " + playerSum + " (" + playerSumdecimal + ")";
+
+        // Calculate and display dealer sum in binary
+        var dealerSum = calculateSumInBinary("dealercardsbox");
+        var dealerSumdecimal = todecimal(dealerSum)
+        document.getElementById("dealersumbox").innerText = "Dealer Sum: " + dealerSum + " (" + dealerSumdecimal + ")";
+    }
+
 
 // Function calls to initialize the game
 playercards();
