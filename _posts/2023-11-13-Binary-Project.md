@@ -20,19 +20,11 @@ layout: default
             background-image: url("https://static.vecteezy.com/system/resources/previews/016/124/733/non_2x/poker-and-casino-playing-card-black-background-vector.jpg");
             background-position: center bottom;
         }
-        .title {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            font-family: Verdana, sans-serif;
-        }
         .playercardsbox, .dealercardsbox {
             position: fixed;
             top: 77%;
             transform: translate(-50%, -50%);
-            background-color: rgba(128, 128, 128, 0.5);
+            background-color: rgba(38, 152, 255, 0.3) !important;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -48,13 +40,13 @@ layout: default
         transform: scaleX(1);
         transform-origin: bottom left;
         }
-        .playercardsbox::before, .dealercardsbox:hover::before {
+        .playercardsbox::before, .dealercardsbox::before {
         content: " ";
         display: block;
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
         inset: 0 0 0 0;
-        background: hsl(200 100% 80%);
+        background-color: rgba(128, 128, 128, 0.5);
         z-index: -1;
         transition: transform .3s ease;
         }
@@ -124,12 +116,30 @@ layout: default
         .dealersumbox {
             left: 70%;
         }
+        .floating { 
+            animation-name: floating;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            margin-left: 10px;
+            margin-top: 5px;
+            top: 10%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            font-family: Monochrome;
+        }
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); } 
+        }
     </style>
 </head>
 <body>
-<div>
+<div class="floating">
     <!-- Title of the game -->
-    <h1 class="title">Binary Blackjack</h1>
+    <h1 class="floating">Binary Blackjack</h1>
 </div>
 <div class="playercardsbox" id="playercardsbox">
     <!-- Player's card box with placeholder text -->
