@@ -40,6 +40,29 @@ layout: default
             font-family: Verdana, sans-serif;
             overflow-y: auto; /*Enable vertical scroll if needed */
         }
+        .playercardsbox::before, .dealercardsbox::before {  
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+        .playercardsbox:hover::before, .dealercardsbox:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+        }
+        .playercardsbox::before, .dealercardsbox:hover::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        inset: 0 0 0 0;
+        background: hsl(200 100% 80%);
+        z-index: -1;
+        transition: transform .3s ease;
+        }
+        @media (orientation: landscape) {
+        body {
+            grid-auto-flow: column;
+        }
+        }
         .playercardsbox {
             left: 30%;
             max-height: 100%; /* Allow it to grow to the full height of the viewport*/
