@@ -134,6 +134,35 @@ layout: default
             50% { transform: translate(0, 15px); }
             100% { transform: translate(0, -0px); } 
         }
+        .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 1000;
+    animation: fall linear;
+}
+.rectangle {
+    background-color: #3498db;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.circle {
+    background-color: #f39c12;
+    border-radius: 50%;
+}
+.triangle {
+    background-color: #2ecc71;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.diamond {
+    background-color: #e74c3c;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+/* Add the fall animation */
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
     </style>
 </head>
 <body>
@@ -162,7 +191,41 @@ layout: default
     <button class="standbutton" onclick="stand()">Stand</button>
     <button class="resetbutton" onclick="resetGame()">Reset</button>
 </div>
-
+<script>
+   function confetti() {
+    // Define the number of confetti pieces you want to create
+    var numberOfConfetti = 100;
+    for (var i = 0; i < numberOfConfetti; i++) {
+        var confetti = document.createElement("div");
+        confetti.className = "confetti";
+        // Array of colors and shapes
+        var colors = ["#3498db", "#f39c12", "#2ecc71", "#e74c3c"];
+        var shapes = ["rectangle", "circle", "triangle", "diamond"];
+        // Randomly select color and shape
+        var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        var randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+        // Apply selected color and shape to the confetti element
+        confetti.style.backgroundColor = randomColor;
+        confetti.classList.add(randomShape);
+        // Set position and animation properties
+        var startPosition = Math.random() * window.innerWidth;
+        var duration = Math.random() * 2 + 1;
+        confetti.style.left = startPosition + "px";
+        confetti.style.animation = `fall ${duration}s linear`;
+        // Add confetti to the body
+        document.body.appendChild(confetti);
+        // Remove confetti element after animation
+        confetti.addEventListener("animationend", function () {
+            confetti.remove();
+        });
+    }
+}
+// Function to trigger confetti
+function triggerConfetti() {
+    confetti();
+}
+    // Rest of the script remains unchanged
+</script>
 <script>
     // Game variables
     var cardcounter = 52;
@@ -366,6 +429,7 @@ layout: default
         } else {
             if (dealerScore > 21 || playerScore > dealerScore) {
                 document.getElementById("result").innerText = "You Win!";
+                 triggerConfetti(); // Trigger confetti on win
             } else if (playerScore === dealerScore) {
                 document.getElementById("result").innerText = "It's a Tie!";
             } else {
@@ -393,6 +457,15 @@ layout: default
         document.getElementById("playersumbox").style.display = "none";
         document.getElementById("dealersumbox").style.display = "none";
         playerBusted = false;
+        // Wait for confetti animation to finish before removing confetti elements
+    setTimeout(() => {
+        // Remove confetti elements
+        var existingConfetti = document.getElementsByClassName("confetti");
+        while (existingConfetti.length > 0) {
+            existingConfetti[0].parentNode.removeChild(existingConfetti[0]);
+        }
+    }, 4500); // Adjust the timeout value based on your confetti animation duration
+
         // Regenerate the deck and deal initial cards
         deck = generatecards();
         playercards();
