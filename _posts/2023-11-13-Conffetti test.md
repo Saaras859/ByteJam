@@ -20,40 +20,25 @@ layout: default
             background-image: url("https://static.vecteezy.com/system/resources/previews/016/124/733/non_2x/poker-and-casino-playing-card-black-background-vector.jpg");
             background-position: center bottom;
         }
+        .title {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            font-family: Verdana, sans-serif;
+        }
         .playercardsbox, .dealercardsbox {
             position: fixed;
             top: 77%;
             transform: translate(-50%, -50%);
-            background-color: rgba(38, 152, 255, 0.3) !important;
+            background-color: rgba(128, 128, 128, 0.5);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             font-size: 30px;
             font-family: Verdana, sans-serif;
             overflow-y: auto; /*Enable vertical scroll if needed */
-        }
-        .playercardsbox::before, .dealercardsbox::before {  
-            transform: scaleX(0);
-            transform-origin: bottom right;
-        }
-        .playercardsbox:hover::before, .dealercardsbox:hover::before {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-        }
-        .playercardsbox::before, .dealercardsbox::before {
-        content: " ";
-        display: block;
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        inset: 0 0 0 0;
-        background-color: rgba(128, 128, 128, 0.5);
-        z-index: -1;
-        transition: transform .3s ease;
-        }
-        @media (orientation: landscape) {
-        body {
-            grid-auto-flow: column;
-        }
         }
         .playercardsbox {
             left: 30%;
@@ -116,24 +101,6 @@ layout: default
         .dealersumbox {
             left: 70%;
         }
-        .floating { 
-            animation-name: floating;
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            margin-left: 10px;
-            margin-top: 5px;
-            top: 10%;
-            left: 60%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            font-family: Monochrome;
-        }
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 15px); }
-            100% { transform: translate(0, -0px); } 
-        }
         .confetti {
     position: fixed;
     width: 10px;
@@ -163,12 +130,13 @@ layout: default
         transform: translateY(100vh);
     }
 }
-    </style>
+</style>
+
 </head>
 <body>
-<div class="floating">
+<div>
     <!-- Title of the game -->
-    <h1 class="floating">Binary Blackjack</h1>
+    <h1 class="title">Binary Blackjack</h1>
 </div>
 <div class="playercardsbox" id="playercardsbox">
     <!-- Player's card box with placeholder text -->
@@ -226,6 +194,7 @@ function triggerConfetti() {
 }
     // Rest of the script remains unchanged
 </script>
+
 <script>
     // Game variables
     var cardcounter = 52;
@@ -429,7 +398,8 @@ function triggerConfetti() {
         } else {
             if (dealerScore > 21 || playerScore > dealerScore) {
                 document.getElementById("result").innerText = "You Win!";
-                 triggerConfetti(); // Trigger confetti on win
+            triggerConfetti(); // Trigger confetti on win
+
             } else if (playerScore === dealerScore) {
                 document.getElementById("result").innerText = "It's a Tie!";
             } else {
@@ -442,6 +412,7 @@ function triggerConfetti() {
             displaySums();
         }
     }
+   
 
     // Function to reset the game
     function resetGame() {
@@ -571,6 +542,3 @@ playercards();
 dealercards();
 calculatePlayerScore();
 calculateDealerScore();
-
-</script>
-</body>
