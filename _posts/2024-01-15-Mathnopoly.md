@@ -3,13 +3,14 @@ toc: false
 comments: false
 layout: default
 ---
+
 <html lang="en">
 <head>
     <!-- Meta tags for character set and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title of the webpage -->
-    <title>Binary Blackjack</title>
+    <title>Mathnopoly</title>
     <!-- Styles for the webpage -->
     <style>
         body {
@@ -18,112 +19,7 @@ layout: default
             margin: 0em 0%;
             background-color: #8ec1da;
             background-image: url("https://static.vecteezy.com/system/resources/previews/016/124/733/non_2x/poker-and-casino-playing-card-black-background-vector.jpg");
-            background-position: center bottom;
-        }
-        .title {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            font-family: Verdana, sans-serif;
-        }
-        .playercardsbox, .dealercardsbox {
-            position: fixed;
-            top: 77%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(128, 128, 128, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            font-size: 30px;
-            font-family: Verdana, sans-serif;
-            overflow-y: auto; /*Enable vertical scroll if needed */
-        }
-        .playercardsbox::before, .dealercardsbox::before {  
-            transform: scaleX(0);
-            transform-origin: bottom right;
-        }
-        .playercardsbox:hover::before, .dealercardsbox:hover::before {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-        }
-        .playercardsbox::before, .dealercardsbox:hover::before {
-        content: " ";
-        display: block;
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        inset: 0 0 0 0;
-        background: hsl(200 100% 80%);
-        z-index: -1;
-        transition: transform .3s ease;
-        }
-        @media (orientation: landscape) {
-        body {
-            grid-auto-flow: column;
-        }
-        }
-        .playercardsbox {
-            left: 30%;
-            max-height: 100%; /* Allow it to grow to the full height of the viewport*/
-        }
-        .dealercardsbox {
-            left: 70%;
-            max-height: 100%;
-        }
-        .result {
-            position: fixed;
-            top: 34%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 150px;
-            font-family: Verdana, sans-serif;
-            color: red;
-            display: none;
-        }
-        .hitbutton, .standbutton, .resetbutton {
-            position: fixed;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(38, 152, 255, 0.5);
-            border: none;
-            width: 10%;
-            height: 10%;
-            border-radius: 10px;
-            font-size: 30px;
-            font-family: Verdana, sans-serif;
-        }
-        .hitbutton:hover, .standbutton:hover, .resetbutton:hover {
-            background-color: rgba(38, 152, 255, 0.3) !important;
-        }
-        .standbutton {
-            top: 72%
-        }
-        .hitbutton {
-            top: 60%
-        }
-        .resetbutton {
-            top: 84%;
-            display: block
-        }
-        .playersumbox, .dealersumbox {
-            position: fixed;
-            top: 53%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(128, 128, 128, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            font-size: 30px;
-            font-family: Verdana, sans-serif;
-            display: none;
-        }
-        .playersumbox {
-            left: 30%;
-        }
-        .dealersumbox {
-            left: 70%;
-        }
+            background-position: center bottom; }
     </style>
 </head>
 <body>
@@ -488,6 +384,3 @@ playercards();
 dealercards();
 calculatePlayerScore();
 calculateDealerScore();
-
-</script>
-</body>
