@@ -159,17 +159,15 @@ layout: default
     </div>
 </div>
 <br><br>
-</div>
     <div id="score">Player Money: $<span id="player-money">0</span> | AI Money: $<span id="ai-money">0</span></div>
     <div id="question">Question: <span id="current-question"></span></div>
     <div id="answer">Answer: <input type="text" id="user-answer"><button id="submit-answer" onclick="submitAnswer()">Submit Answer</button></div>
     <div id="position">Player Position: <span id="player-position">1</span> | AI Position: <span id="ai-position">1</span></div>
     <div id="steps">Player Steps: <span id="player-steps">0</span> | AI Steps: <span id="ai-steps">0</span></div>
-</div>
     <div id="dice-roll"></div>
     <div class="ai" id="ai-dot"></div>
 
-</div>
+
 
 <script>
     let playerPosition = 1;
@@ -182,18 +180,21 @@ layout: default
     let totalAiMoney = 0;
 
     const boxValues = {
-        1: 80,
-        2: 30,
-        3: 200,
-        4: -10,
-        5: 40,
-        6: 70,
-        7: 40,
-        8: 130 ,
-        9: 110,
-        10: 120,
+        1: 0,
+        2: 100,
+        3: 150,
+        4: -20,
+        5: 10,
+        6: -30,
+        7: 140,
+        8: 10,
+        9: -20 ,
+        10: 20,
         11: -50,
-        12: 90  
+        12: -5,
+        13: -10,
+        14: 30,
+        16: 5 
         // Add more mappings as needed for other dice roll numbers
     };
 
@@ -206,7 +207,8 @@ layout: default
     }
 
     // Function to move player or AI
-     function move(token, steps) {
+    // Function to move player or AI
+    function move(token, steps) {
         for (let i = 0; i < steps; i++) {
             token === 'player' ? playerPosition++ : aiPosition++;
             const totalBoxes = Object.keys(boxValues).length;
@@ -217,14 +219,15 @@ layout: default
             if (aiPosition > totalBoxes) {
                 aiPosition %= totalBoxes;
             }
-            const boxValue = boxValues[token === 'player' ? playerPosition : aiPosition];
-            token === 'player' ? totalPlayerMoney += boxValue : totalAiMoney += boxValue;
+            const boxValue = boxValues[token === 'player' ? playerPosition - 1 : aiPosition - 1];
+            token === 'player' ? (totalPlayerMoney += boxValue) : (totalAiMoney += boxValue);
             document.getElementById(`${token}-money`).textContent = token === 'player' ? totalPlayerMoney : totalAiMoney;
             document.getElementById(`${token}-position`).textContent = token === 'player' ? playerPosition : aiPosition; // Update position display
         }
-        token === 'player' ? playerSteps = steps : aiSteps = steps; // Update steps
+        token === 'player' ? (playerSteps = steps) : (aiSteps = steps); // Update steps
         document.getElementById(`${token}-steps`).textContent = steps; // Update steps display
     }
+
 
 
   // Function to handle player's turn
@@ -253,6 +256,7 @@ function movePlayerToPosition(position) {
     player.style.top = `${boxCenterY}px`; // Set the top position of the player
     player.style.left = `${boxCenterX}px`; // Set the left position of the player
 }
+
 function moveAIToPosition(position) {
     const boxes = document.querySelectorAll('.box');
     const box = boxes[position];
