@@ -60,6 +60,7 @@ layout: default
     }
     #score {
         background-color: #fff;
+        color: black;
         border: 1px solid #000;
         padding: 5px 10px;
         margin-top: 10px;
@@ -97,28 +98,28 @@ layout: default
 <div id="container">
     <div id="board">
         <div class="row">
-            <div class="box">200</div>
-            <div class="box">-300</div>
-            <div class="box">500</div>
-            <div class="box">100</div>
+            <div class="box">80</div>
+            <div class="box">30</div>
+            <div class="box">-110</div>
+            <div class="box">-10</div>
         </div>
         <div class="row">
-            <div class="box">200</div>
+            <div class="box">90</div>
             <div class="box"></div>
             <div class="box"></div>
-            <div class="box">100</div>
+            <div class="box">40</div>
         </div>
         <div class="row">
-            <div class="box">200</div>
+            <div class="box">-50</div>
             <div class="box"></div>
             <div class="box"></div>
-            <div class="box">100</div>
+            <div class="box">70</div>
         </div>
         <div class="row">
-            <div class="box">200</div>
-            <div class="box">-300</div>
-            <div class="box">500</div>
-            <div class="box">100</div>
+            <div class="box">120</div>
+            <div class="box">-80</div>
+            <div class="box">-130</div>
+            <div class="box">40</div>
         </div>
         <!-- Add more rows and boxes here -->
     </div>
@@ -153,6 +154,7 @@ layout: default
 
     // Function to handle player's turn
     function playerTurn() {
+        playerMoney = 0;
         document.getElementById('current-question').textContent = generateQuestion();
     }
 
