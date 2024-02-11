@@ -102,27 +102,27 @@ layout: default
         <div class="box" id="box2">100</div>
         <div class="box" id="box3">150</div>
         <div class="box" id="box4">-20</div>
-        <div class="box" id="box5">10</div>
-        <div class="box" id="box6">5</div>
+        <div class="box" id="box5">200</div>
+        <div class="box" id="box16">5</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box7">-30</div>
-        <div class="box" id="box8">-70</div>
+        <div class="box" id="box6">-30</div>
+        <div class="box" id="box15">-70</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box9">140</div>
-        <div class="box" id="box10">30</div>
+        <div class="box" id="box7">140</div>
+        <div class="box" id="box14">30</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box11">10</div>
-        <div class="box" id="box12">-10</div>
-        <div class="box" id="box13">-5</div>
-        <div class="box" id="box14">-50</div>
-        <div class="box" id="box15">20</div>
-        <div class="box" id="box16">-20</div>
+        <div class="box" id="box8">10</div>
+        <div class="box" id="box13">-10</div>
+        <div class="box" id="box12">-5</div>
+        <div class="box" id="box11">-50</div>
+        <div class="box" id="box10">20</div>
+        <div class="box" id="box9">-60</div>
         <div class="player" id="player"></div>
     </div>
 </div>
@@ -134,8 +134,8 @@ layout: default
 <div id="ai-money">AI Money: 0</div>
 
 <script>
-    let playerPosition = 0;
-    let aiPosition = 0;
+    let playerPosition = 1; // Adjusted to start from 1
+let aiPosition = 1; // Adjusted to start from 1
     let playerMoney = 0;
     let aiMoney = 0;
 
@@ -144,17 +144,17 @@ layout: default
         2: 100,
         3: 150,
         4: -20,
-        5: 10,
+        5: 200,
         6: -30,
         7: 140,
         8: 10,
-        9: -20 ,
+        9: -60 ,
         10: 20,
         11: -50,
         12: -5,
         13: -10,
         14: 30,
-        15: 20,
+        15: -70,
         16: 5 
         // Add more mappings as needed for other dice roll numbers
     };
@@ -171,15 +171,18 @@ layout: default
 // Function to move player or AI
 function move(token, steps) {
     console.log(`Moving ${token} dot ${steps} steps.`);
+    const totalBoxes = Object.keys(boxValues).length;
     for (let i = 0; i < steps; i++) {
-        token === 'player' ? playerPosition++ : aiPosition++;
-        const totalBoxes = Object.keys(boxValues).length;
-        // Loop back to 1 if position exceeds the total number of boxes
-        if (playerPosition > totalBoxes) {
-            playerPosition %= totalBoxes;
-        }
-        if (aiPosition > totalBoxes) {
-            aiPosition %= totalBoxes;
+        if (token === 'player') {
+            playerPosition++;
+            if (playerPosition > totalBoxes) {
+                playerPosition %= totalBoxes;
+            }
+        } else {
+            aiPosition++;
+            if (aiPosition > totalBoxes) {
+                aiPosition %= totalBoxes;
+            }
         }
     }
 
@@ -203,20 +206,21 @@ function move(token, steps) {
 }
 
 
-    // Function to move the player (red box) to the center of the specified position
-// Function to move the player dot to the correct box position
+
 function movePlayerToPosition(position) {
-    const playerBox = document.getElementById(`box${position + 1}`); // Box IDs start from 1
+    const playerBox = document.getElementById(`box${position + 1}`); // Adjusted to use position + 1
     const playerDot = document.getElementById('player');
     const boxRect = playerBox.getBoundingClientRect();
     const boxSize = 100; // Assuming box size is 100px
     const boxCenterX = boxRect.left + (boxSize / 2); // Calculate center X coordinate of the box
     const boxCenterY = boxRect.top + (boxSize / 2); // Calculate center Y coordinate of the box
+    const boxNumber = position + 1; // Adjusted to use position + 1
+    console.log(`Player dot is currently positioned in box ${boxNumber} at (${boxCenterX}, ${boxCenterY}).`);
+    console.log(`Moving player dot from box ${playerPosition} to box ${position + 1}.`); // Log starting point
     playerDot.style.top = `${boxCenterY}px`; // Set the top position of the player dot
     playerDot.style.left = `${boxCenterX}px`; // Set the left position of the player dot
-    console.log(`Player dot moved to box ${position}.`);
+    console.log(`Player dot moved to box ${position + 1}.`);
 }
-
 // Function to move the AI dot to the correct box position
 function moveAIToPosition(position) {
     const aiBox = document.getElementById(`box${position + 1}`); // Box IDs start from 1
@@ -229,9 +233,9 @@ function moveAIToPosition(position) {
     aiDot.style.top = `${boxCenterY - (dotSize / 2)}px`; // Set the top position of the AI dot
     aiDot.style.left = `${boxCenterX - (dotSize / 2)}px`; // Set the left position of the AI dot
     aiDot.style.display = 'block'; // Show the AI dot
-    console.log(`AI dot moved to box ${position}.`);
-
+    console.log(`AI dot moved to box ${position + 1}.`);
 }
+
 
 
     function submitAnswer() {
