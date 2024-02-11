@@ -135,7 +135,7 @@ layout: default
 
 <script>
     let playerPosition = 1; // Adjusted to start from 1
-let aiPosition = 1; // Adjusted to start from 1
+    let aiPosition = 1; // Adjusted to start from 1
     let playerMoney = 0;
     let aiMoney = 0;
 
@@ -169,41 +169,40 @@ let aiPosition = 1; // Adjusted to start from 1
 
 
 // Function to move player or AI
-function move(token, steps) {
-    console.log(`Moving ${token} dot ${steps} steps.`);
-    const totalBoxes = Object.keys(boxValues).length;
-    for (let i = 0; i < steps; i++) {
-        if (token === 'player') {
-            playerPosition++;
-            if (playerPosition > totalBoxes) {
-                playerPosition = 1; // Wrap around to the first box
-            }
-        } else {
-            aiPosition++;
-            if (aiPosition > totalBoxes) {
-                aiPosition = 1; // Wrap around to the first box
+    function move(token, steps) {
+        console.log(`Moving ${token} dot ${steps} steps.`);
+        const totalBoxes = Object.keys(boxValues).length;
+        for (let i = 0; i < steps; i++) {
+            if (token === 'player') {
+                playerPosition++;
+                if (playerPosition > totalBoxes) {
+                    playerPosition = 1; // Wrap around to the first box
+                }
+            } else {
+                aiPosition++;
+                if (aiPosition > totalBoxes) {
+                    aiPosition = 1; // Wrap around to the first box
+                }
             }
         }
-    }
+        // After moving, get the value of the box at the final position
+        const boxValue = boxValues[token === 'player' ? playerPosition : aiPosition];
+        if (boxValue === undefined) {
+            console.error(`Box value for position ${token === 'player' ? playerPosition : aiPosition} is undefined.`);
+            return;
+        }
+        if (token === 'player') {
+            console.log(`Adding ${boxValue} to player sum.`);
+            playerMoney += boxValue;
+        } else {
+            console.log(`Adding ${boxValue} to AI sum.`);
+            aiMoney += boxValue;
+        }
 
-    // After moving, get the value of the box at the final position
-    const boxValue = boxValues[token === 'player' ? playerPosition : aiPosition];
-    if (boxValue === undefined) {
-        console.error(`Box value for position ${token === 'player' ? playerPosition : aiPosition} is undefined.`);
-        return;
+        // Update the displayed sums
+        document.getElementById('player-money').textContent = `Player Money: ${playerMoney}`;
+        document.getElementById('ai-money').textContent = `AI Money: ${aiMoney}`;
     }
-    if (token === 'player') {
-        console.log(`Adding ${boxValue} to player sum.`);
-        playerMoney += boxValue;
-    } else {
-        console.log(`Adding ${boxValue} to AI sum.`);
-        aiMoney += boxValue;
-    }
-
-    // Update the displayed sums
-    document.getElementById('player-money').textContent = `Player Money: ${playerMoney}`;
-    document.getElementById('ai-money').textContent = `AI Money: ${aiMoney}`;
-}
 
 
 
