@@ -176,12 +176,12 @@ function move(token, steps) {
         if (token === 'player') {
             playerPosition++;
             if (playerPosition > totalBoxes) {
-                playerPosition %= totalBoxes;
+                playerPosition = 1; // Wrap around to the first box
             }
         } else {
             aiPosition++;
             if (aiPosition > totalBoxes) {
-                aiPosition %= totalBoxes;
+                aiPosition = 1; // Wrap around to the first box
             }
         }
     }
@@ -208,19 +208,21 @@ function move(token, steps) {
 
 
 function movePlayerToPosition(position) {
-    const playerBox = document.getElementById(`box${position + 1}`); // Adjusted to use position + 1
+    const playerBox = document.getElementById(`box${position + 1}`);
+    if (!playerBox) return; // Check if playerBox is null, and return if so
     const playerDot = document.getElementById('player');
     const boxRect = playerBox.getBoundingClientRect();
     const boxSize = 100; // Assuming box size is 100px
     const boxCenterX = boxRect.left + (boxSize / 2); // Calculate center X coordinate of the box
     const boxCenterY = boxRect.top + (boxSize / 2); // Calculate center Y coordinate of the box
-    const boxNumber = position + 1; // Adjusted to use position + 1
+    const boxNumber = position + 1;
     console.log(`Player dot is currently positioned in box ${boxNumber} at (${boxCenterX}, ${boxCenterY}).`);
-    console.log(`Moving player dot from box ${playerPosition} to box ${position + 1}.`); // Log starting point
-    playerDot.style.top = `${boxCenterY}px`; // Set the top position of the player dot
-    playerDot.style.left = `${boxCenterX}px`; // Set the left position of the player dot
+    console.log(`Moving player dot from box ${playerPosition} to box ${position + 1}.`);
+    playerDot.style.top = `${boxCenterY}px`;
+    playerDot.style.left = `${boxCenterX}px`;
     console.log(`Player dot moved to box ${position + 1}.`);
 }
+
 // Function to move the AI dot to the correct box position
 function moveAIToPosition(position) {
     const aiBox = document.getElementById(`box${position + 1}`); // Box IDs start from 1
