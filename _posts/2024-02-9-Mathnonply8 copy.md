@@ -134,6 +134,7 @@ layout: default
 <div id="player-money">Player Money: 0</div>
 <div id="ai-money">AI Money: 0</div>
 
+
 <script>
     let playerPosition = 0; // Start from 0
     let aiPosition = 0; // Start from 0
@@ -167,6 +168,7 @@ layout: default
     }
 
     function move(token, steps) {
+        console.log(`Moving ${token} dot ${steps} steps.`);
         const totalBoxes = Object.keys(boxValues).length;
         for (let i = 0; i < steps; i++) {
             if (token === 'player') {
@@ -177,9 +179,11 @@ layout: default
         }
         const boxValue = boxValues[token === 'player' ? playerPosition : aiPosition];
         if (token === 'player') {
+            console.log(`Adding ${boxValue} to player sum.`);
             playerMoney += boxValue;
             document.getElementById('player-money').textContent = `Player Money: ${playerMoney}`;
         } else {
+            console.log(`Adding ${boxValue} to AI sum.`);
             aiMoney += boxValue;
             document.getElementById('ai-money').textContent = `AI Money: ${aiMoney}`;
         }
@@ -192,8 +196,10 @@ layout: default
         const boxSize = 100; 
         const boxCenterX = boxRect.left + (boxSize / 2);
         const boxCenterY = boxRect.top + (boxSize / 2);
+        console.log(`Player dot is currently positioned in box ${position} at (${boxCenterX}, ${boxCenterY}).`);
         playerDot.style.top = `${boxCenterY}px`;
         playerDot.style.left = `${boxCenterX}px`;
+        console.log(`Player dot moved to box ${position}.`);
     }
 
     function moveAIToPosition(position) {
@@ -204,6 +210,7 @@ layout: default
         const boxSize = 100;
         const boxCenterX = boxRect.left + (boxSize / 2);
         const boxCenterY = boxRect.top + (boxSize / 2);
+        console.log(`AI dot moved to box ${position}.`);
         aiDot.style.top = `${boxCenterY - (dotSize / 2)}px`;
         aiDot.style.left = `${boxCenterX - (dotSize / 2)}px`;
         aiDot.style.display = 'block';
@@ -213,12 +220,14 @@ layout: default
         const answer = document.getElementById('user-answer').value;
         const correctAnswer = eval(document.getElementById('current-question').textContent);
         if (parseInt(answer) === correctAnswer) {
-            const steps = Math.floor(Math.random() * 11) + 2;
+            const steps = Math.floor(Math.random() * 6) + 1;
+            console.log(`Player answered correctly. Moving player.`);
             move('player', steps);
             document.getElementById('current-question').textContent = generateQuestion();
             movePlayerToPosition(playerPosition);
         } else {
-            const steps = Math.floor(Math.random() * 11) + 2;
+            const steps = Math.floor(Math.random() * 6) + 1;
+            console.log(`Player answered incorrectly. Moving AI.`);
             move('ai', steps);
             document.getElementById('current-question').textContent = generateQuestion();
             moveAIToPosition(aiPosition);
@@ -226,6 +235,7 @@ layout: default
         document.getElementById('user-answer').value = '';
     }
 
+    console.log(`Generating initial question.`);
     document.getElementById('current-question').textContent = generateQuestion();
     movePlayerToPosition(playerPosition);
     moveAIToPosition(aiPosition);
