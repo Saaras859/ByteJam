@@ -130,7 +130,7 @@ layout: default
 
 <br><br>
 <div id="question">Question: <span id="current-question"></span></div>
-<div id="answer">Answer: <input type="text" id="user-answer"><button onclick="submitAnswer()">Submit</button></div>
+<div id="answer">Answer: <input type="text" id="user-answer" onkeypress="checkEnter(event)"></div>
 <div id="player-money">Player Money: 0</div>
 <div id="ai-money">AI Money: 0</div>
 
@@ -239,6 +239,12 @@ layout: default
     document.getElementById('current-question').textContent = generateQuestion();
     movePlayerToPosition(playerPosition);
     moveAIToPosition(aiPosition);
+
+function checkEnter(event) {
+    if (event.key === "Enter") {
+        submitAnswer();
+    }
+}
 
 </script>
 </body>
