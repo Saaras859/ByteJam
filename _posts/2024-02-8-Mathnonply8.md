@@ -98,7 +98,7 @@ layout: default
 <div id="game-container">
     <div class="container">
         <!-- 16 light gray boxes -->
-        <div class="box" id="box1">0</div>
+        <div class="box" id="box1"></div>
         <div class="box" id="box2">100</div>
         <div class="box" id="box3">150</div>
         <div class="box" id="box4">-20</div>
@@ -134,8 +134,8 @@ layout: default
 <div id="ai-money">AI Money: 0</div>
 
 <script>
-    let playerPosition = 1;
-    let aiPosition = 1;
+    let playerPosition = 0;
+    let aiPosition = 0;
     let playerMoney = 0;
     let aiMoney = 0;
 
@@ -200,15 +200,7 @@ function move(token, steps) {
     // Update the displayed sums
     document.getElementById('player-money').textContent = `Player Money: ${playerMoney}`;
     document.getElementById('ai-money').textContent = `AI Money: ${aiMoney}`;
-
-    // Move the corresponding dot to the correct position
-    if (token === 'player') {
-        movePlayerToPosition(playerPosition);
-    } else {
-        moveAIToPosition(aiPosition);
-    }
 }
-
 
 
     // Function to move the player (red box) to the center of the specified position
