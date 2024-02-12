@@ -327,6 +327,7 @@ function submitAnswer() {
         console.log(`Player answered correctly. Moving player.`);
         move('player', playerSteps);
         movePlayerToPosition(playerPosition);
+        document.getElementById('current-question').textContent = generateQuestion();
         // Hide the alert after 2 seconds
         setTimeout(() => {
             // Delay AI's turn
