@@ -151,26 +151,26 @@ layout: default
         <div class="box" id="box2">150</div>
         <div class="box" id="box3">-20</div>
         <div class="box" id="box4">200</div>
-        <div class="box" id="box5">-30</div>
+        <div class="box" id="box15">-30</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box6">140</div>
-        <div class="box" id="box7">10</div>
+        <div class="box" id="box5">140</div>
+        <div class="box" id="box14">10</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box8">-60</div>
-        <div class="box" id="box9">20</div>
+        <div class="box" id="box6">-60</div>
+        <div class="box" id="box13">20</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box10">-50</div>
-        <div class="box" id="box11">-5</div>
-        <div class="box" id="box12">-10</div>
-        <div class="box" id="box13">30</div>
-        <div class="box" id="box14">-70</div>
-        <div class="box" id="box15">5</div>
+        <div class="box" id="box7">-50</div>
+        <div class="box" id="box12">-5</div>
+        <div class="box" id="box11">-10</div>
+        <div class="box" id="box10">30</div>
+        <div class="box" id="box9">-70</div>
+        <div class="box" id="box8">5</div>
         <div class="player" id="player"></div>
         <div class="ai" id="ai-dot"></div>
     </div>
@@ -197,17 +197,17 @@ layout: default
         2: 150,
         3: -20,
         4: 200,
-        5: -30,
-        6: 140,
-        7: 10,
-        8: -60,
-        9: 20,
-        10: -50,
-        11: -5,
-        12: -10,
-        13: 30,
-        14: -70,
-        15: 5 
+        5: 140,
+        6: -60,
+        7: -50,
+        8: 5,
+        9: -70,
+        10: 30,
+        11: -10,
+        12: -5,
+        13: 20,
+        14: 10,
+        15: -30
     };
 
     function generateQuestion() {
