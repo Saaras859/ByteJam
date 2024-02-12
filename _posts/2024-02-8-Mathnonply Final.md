@@ -359,6 +359,8 @@ function submitAnswer() {
             submitAnswer();
         }
     }
+
+    
 </script>
 </body>
 </html>
