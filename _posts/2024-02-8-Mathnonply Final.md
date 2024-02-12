@@ -72,9 +72,18 @@ layout: default
         margin-top: 20px;
     }
     #user-answer {
-        font-size: 20px; /* Increase font size for input */
-        padding: 5px; /* Adjust padding for input */
-        margin-right: 10px; /* Add some space between input and button */
+        font-size: 20px;
+        padding: 20px;
+        margin-right: 10px;
+        background-color: rgba(0, 0, 0, 0.9); /* Lighter shade of black */
+        color: white; /* White text */
+        border-radius: 10px; /* Rounded corners */
+        border: none; /* Remove border */
+        outline: none; /* Remove outline */
+        text-align: center; /* Center text horizontally */
+        vertical-align: middle; /* Center text vertically */
+        width: 100px; /* Adjust width as needed */
+        height: 30px; /* Adjust height as needed */
     }
     /* Styling for the dice roll result */
     #dice-roll {
@@ -259,8 +268,6 @@ function resetGame() {
     movePlayerToPosition(playerPosition);
     moveAIToPosition(aiPosition);
 }
-
-
     function movePlayerToPosition(position) {
         const playerBox = document.getElementById(`box${position}`);
         const playerDot = document.getElementById('player');
@@ -301,10 +308,7 @@ function submitAnswer() {
         console.log(`Player answered correctly. Moving player.`);
         move('player', playerSteps);
         movePlayerToPosition(playerPosition);
-
-        // Indicate AI's turn with a quick alert
         
-
         // Hide the alert after 2 seconds
         setTimeout(() => {
             // Delay AI's turn
@@ -345,8 +349,6 @@ function submitAnswer() {
     // Focus on user answer input for convenience
     document.getElementById('user-answer').focus();
 }
-
-
     console.log(`Generating initial question.`);
     document.getElementById('current-question').textContent = generateQuestion();
     movePlayerToPosition(playerPosition);
