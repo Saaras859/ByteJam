@@ -308,7 +308,6 @@ function submitAnswer() {
         console.log(`Player answered correctly. Moving player.`);
         move('player', playerSteps);
         movePlayerToPosition(playerPosition);
-        
         // Hide the alert after 2 seconds
         setTimeout(() => {
             // Delay AI's turn
@@ -337,7 +336,6 @@ function submitAnswer() {
         setTimeout(() => {
             // Set the question for the player after AI's move
             document.getElementById('current-question').textContent = generateQuestion();
-            
             // Indicate player's turn
             turnDisplay.textContent = "Your Turn";
         }, 3000); // 3 second delay
