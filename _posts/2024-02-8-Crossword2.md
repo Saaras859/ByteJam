@@ -96,55 +96,55 @@ layout: default
 <div id="game-container">
     <div class="container">
         <!-- 81 white and black boxes -->
-        <div class="whitebox" id="box1"><span class="number">1</span></div>
-        <div class="whitebox" id="box2"><span class="number"></span></div>
-        <div class="whitebox" id="box3"><span class="number">2</span></div>
-        <div class="whitebox" id="box4"><span class="number"></span></div>
-        <div class="whitebox" id="box5"><span class="number">3</span></div>
+            <div class="whitebox" id="box1"><span class="number"></span></div>
+            <div class="whitebox" id="box2"><span class="number"></span></div>
+            <div class="whitebox" id="box3"><span class="number"></span></div>
+            <div class="whitebox" id="box4"><span class="number"></span></div>
+            <div class="whitebox" id="box5"><span class="number"></span></div>
+            <div class="whitebox" id="box6"><span class="number"></span></div>
+            <div class="whitebox" id="box7"><span class="number"></span></div>
+            <div class="whitebox" id="box8"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box6"><span class="number">4</span></div>
-        <div class="whitebox" id="box7"><span class="number"></span></div>
+            <div class="whitebox" id="box9"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box8"><span class="number"></span></div>
+            <div class="whitebox" id="box10"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box9"><span class="number">5</span></div>
-        <div class="whitebox" id="box10"><span class="number"></span></div>
-        <div class="whitebox" id="box11"><span class="number"></span></div>
-       <div class="whitebox" id="box12"><span class="number">6</span></div>
-       <div class="whitebox" id="box13"><span class="number"></span></div>
-       <div class="whitebox" id="box14"><span class="number"></span></div>
-        <div class="whitebox" id="box15"><span class="number">7</span></div>
-        <div class="whitebox" id="box16"><span class="number"></span></div>
+            <div class="whitebox" id="box11"><span class="number"></span></div>
+            <div class="whitebox" id="box12"><span class="number"></span></div>
+            <div class="whitebox" id="box13"><span class="number"></span></div>
+            <div class="whitebox" id="box14"><span class="number"></span></div>
+            <div class="whitebox" id="box15"><span class="number"></span></div>
+            <div class="whitebox" id="box16"><span class="number"></span></div>
+            <div class="whitebox" id="box17"><span class="number"></span></div>
+            <div class="whitebox" id="box18"><span class="number"></span></div>
+            <div class="whitebox" id="box19"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box17"><span class="number"></span></div>
-        <div class="whitebox" id="box18"><span class="number"></span></div>
+            <div class="whitebox" id="box20"><span class="number"></span></div>
         <div class="blackbox"></div>
+            <div class="whitebox" id="box21"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box19"><span class="number"></span></div>
+            <div class="whitebox" id="box22"><span class="number"></span></div>
+            <div class="whitebox" id="box23"><span class="number"></span></div>
+            <div class="whitebox" id="box24"><span class="number"></span></div>
+            <div class="whitebox" id="box25"><span class="number"></span></div>
+            <div class="whitebox" id="box26"><span class="number"></span></div>
+            <div class="whitebox" id="box27"><span class="number"></span></div>
+            <div class="whitebox" id="box28"><span class="number"></span></div>
+            <div class="whitebox" id="box29"><span class="number"></span></div>
+            <div class="whitebox" id="box30"><span class="number"></span></div>
         <div class="blackbox"></div>
+            <div class="whitebox" id="box31"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box20"><span class="number"></span></div>
-        <div class="whitebox" id="box21"><span class="number"></span></div>
+            <div class="whitebox" id="box32"><span class="number"></span></div>
         <div class="blackbox"></div>
-       <div class="whitebox" id="box22"><span class="number"></span></div>
-       <div class="whitebox" id="box23"><span class="number">8</span></div>
-        <div class="whitebox" id="box24"><span class="number"></span></div>
-        <div class="whitebox" id="box25"><span class="number">9</span></div>
-        <div class="whitebox" id="box26"><span class="number"></span></div>
-        <div class="whitebox" id="box27"><span class="number"></span></div>
-        <div class="whitebox" id="box28"><span class="number">10</span></div>
-        <div class="whitebox" id="box29"><span class="number"></span></div>
-        <div class="blackbox"></div>
-        <div class="whitebox" id="box30"><span class="number"></span></div>
-        <div class="blackbox"></div>
-        <div class="whitebox" id="box31"><span class="number"></span></div>
-        <div class="whitebox" id="box32"><span class="number"></span></div>
-        <div class="blackbox"></div>
-        <div class="whitebox" id="box33"><span class="number"></span></div>
-        <div class="whitebox" id="box34"><span class="number">11</span></div>   
-        <div class="whitebox" id="box35"><span class="number"></span></div>
-        <div class="whitebox" id="box36"><span class="number"></span></div>
-        <div class="whitebox" id="box37"><span class="number"></span></div>
+            <div class="whitebox" id="box33"><span class="number"></span></div>
+            <div class="whitebox" id="box34"><span class="number"></span></div>
+            <div class="whitebox" id="box35"><span class="number"></span></div>
+            <div class="whitebox" id="box36"><span class="number"></span></div>
+            <div class="whitebox" id="box37"><span class="number"></span></div>
+            <div class="whitebox" id="box38"><span class="number"></span></div>
+            <div class="whitebox" id="box39"><span class="number"></span></div>
+            <div class="whitebox" id="box40"><span class="number"></span></div>  
     </div>
     <div class="hint-box">
     This is a hint box with some text.
@@ -154,73 +154,70 @@ layout: default
 <script>
     // Your existing JavaScript code here
     const boxLetterMapping = {
-        box1: 'S',
-        box2: 'A',
-        box3: 'F',
-        box4: 'E',
-        box5: 'R',
-        box6: 'A',
-        box7: 'E',
-        box8: 'L',
-        box9: 'O',
-        box10: 'L',
+        box1: 'C',
+        box2: 'H',
+        box3: 'E',
+        box4: 'L',
+        box5: 'S',
+        box6: 'E',
+        box7: 'A',
+        box8: 'A',
+        box9: 'L',
+        box10: 'U',
         box11: 'D',
-        box12: 'A',
-        box13: 'M',
-        box14: 'U',
-        box15: 'S',
-        box16: 'E',
-        box17: 'O',
-        box18: 'S',
-        box19: 'I',
-        box20: 'R',
-        box21: 'I',
-        box22: 'S',
-        box23: 'P',
-        box24: 'A',
-        box25: 'I',
-        box26: 'N',
-        box27: 'D',
-        box28: 'I',
-        box29: 'P',
-        box30: 'L',
-        box31: 'E',
+        box12: 'V',
+        box13: 'I',
+        box14: 'E',
+        box15: 'T',
+        box16: 'N',
+        box17: 'A',
+        box18: 'M',
+        box19: 'E',
+        box20: 'G',
+        box21: 'N',
+        box22: 'I',
+        box23: 'M',
+        box24: 'E',
+        box25: 'A',
+        box26: 'T',
+        box27: 'I',
+        box28: 'E',
+        box29: 'R',
+        box30: 'A',
+        box31: 'N',
         box32: 'E',
-        box33: 'Y',
-        box34: 'I',
-        box35: 'E',
-        box36: 'L',
-        box37: 'D',
+        box33: 'E',
+        box34: 'N',
+        box35: 'A',
+        box36: 'T',
+        box37: 'U',
+        box38: 'R',
+        box39: 'E',
+        box40: 'D',
     };
     const wordHints = {
         Across: {
-            1: "Provides security, or a sense of feeling more secured",
-            6: "Entertain and bring joy",
-            8: "European country famous for its cuisine and culture (Beside Portugal)",
-            10: "Lower briefly into a liquid, also a type of sauce",
-            11: "Give way or surrender",
-            5: "Not new; ancient or aged"
+            1: "Premier League team who play their home games at Stamford Bridge",
+            5: "Southeast Asian country",
+            6: "Less suitable for vegetarians",
+            7: "Of a kind of disposition -good"
         },
         Down: {
-            1.1: "Coastal area where the land meets the sea",
-            2: "Seasonal illness caused by viruses",
-            4: "Decorated or embellished",
-            7: "Drink slowly in small quantities through a straw",
-            9: "Type of alcoholic beverage brewed from malt and hops"
+            1.1: "Stock character representative of a primitive man in the Paleoltihic",
+            2: "Graceful or stylish in appearance or manner",
+            3: "Perhaps not quite so rainy?",
+            4: "Liked or appreciated"
         }
     };
     const hintBoxMapping = {
-        1: ['box1', 'box2', 'box3', 'box4', 'box5'], 
-        1.1: ['box1','box7', 'box12', 'box18', 'box21', 'box27', 'box32'],
-        6: ['box12', 'box13', 'box14', 'box15', 'box16'], 
-        8: ['box22', 'box23', 'box24', 'box25', 'box26'], 
-        10: ['box27', 'box28', 'box29'], 
-        11: ['box33', 'box34', 'box35', 'box36', 'box37'], 
-        5: ['box9', 'box10', 'box11'],
-        2: ['box3', 'box8', 'box14'],
-        4: ['box6', 'box11', 'box17', 'box20', 'box26', 'box31', 'box37'],
-        7: ['box15', 'box19', 'box23'],
-        9: ['box24', 'box30', 'box35']
+        1: ['box1', 'box2', 'box3', 'box4', 'box5', 'box6', 'box7'], 
+        1.1: ['box1','box8', 'box12', 'box19', 'box23', 'box30', 'box34'],
+        6: ['box23', 'box24', 'box25', 'box26', 'box27', 'box28', 'box29'], 
+        5: ['box12', 'box13', 'box14', 'box15', 'box16', 'box17', 'box18'],
+        2: ['box3', 'box9', 'box14', 'box20', 'box25', 'box31', 'box36'],
+        4: ['box7', 'box11', 'box18', 'box22', 'box29', 'box33', 'box40'],
+        7: ['box34', 'box35', 'box36', 'box37', 'box38', 'box39', 'box40'],
+        3: ['box5', 'box10', 'box16', 'box21', 'box27', 'box32', 'box38' ],
     };
     Object.keys(wordHints).forEach(direction => {
         Object.keys(wordHints[direction]).forEach(hintNumber => {
@@ -229,14 +226,13 @@ layout: default
             console.log(`The word is ${letters.join('')} and its hint is: ${hint}`);
         });
     });
-// Function to check if the user input matches the correct word for the displayed hint
+    // Function to check if the user input matches the correct word for the displayed hint
 let totalQuestionsAnswered = 0;
 let currentWordHints;
 let acrossWordsCompleted = false; // Initialize acrossWordsCompleted
 let downWordsCompleted = false;
 let correctAnswerCounter = 0;
 let hintIndex = 1;
-// Function to check if the user input matches the correct word for the displayed hint
 // Function to check if the user input matches the correct word for the displayed hint
 function checkAnswer() {
     const userInput = document.querySelector('.input-box').value.trim().toUpperCase();
