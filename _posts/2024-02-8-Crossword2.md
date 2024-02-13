@@ -385,6 +385,7 @@ function populateHintBox() {
     }
     hintIndex++;
 }
+
   const timerDuration = 3 * 60; // in seconds
         let timeRemaining = timerDuration;
 
