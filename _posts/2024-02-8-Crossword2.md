@@ -90,6 +90,18 @@ layout: default
         width: 300px;
         margin-top: 10px;
     }
+    .timer-box {
+        position: fixed;
+        top: 10%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(38, 152, 255, 0.3) !important;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        font-size: 30px;
+        font-family: Verdana, sans-serif;
+        }
 </style>
 </head>
 <body>
@@ -151,6 +163,8 @@ layout: default
 </div>
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
+        <div class="timer-box" id="timer">03:00</div>
+
 <script>
     // Your existing JavaScript code here
     const boxLetterMapping = {
@@ -371,7 +385,37 @@ function populateHintBox() {
     }
     hintIndex++;
 }
+  const timerDuration = 3 * 60; // in seconds
+        let timeRemaining = timerDuration;
 
+        // Function to start the timer
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+
+            const timerInterval = setInterval(function() {
+                // Calculate minutes and seconds
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+
+                // Update the timer display
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Decrement time remaining
+                timeRemaining--;
+
+                // If time runs out, stop the timer
+                if (timeRemaining < 0) {
+                    clearInterval(timerInterval);
+                    // Alert the user that time is up
+                    alert("Time's up!");
+                    // Refresh the page
+                    location.reload();
+                }
+            }, 1000); // Update every second
+        }
+
+        // Start the timer when the page loads
+        startTimer();
 </script>
 </body>
 </html>
