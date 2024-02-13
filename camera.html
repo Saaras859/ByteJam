@@ -106,7 +106,10 @@
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data); // Log the response from the server
+      const jwtToken = data.token
+      console.log(data)
+      localStorage.setItem('jwtToken', jwtToken);
+
       window.location.href = "./game"
     })
     .catch(error => {
