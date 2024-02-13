@@ -44,11 +44,10 @@ layout: default
     }
     .number {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 5px;
+        left: 5px;
         color: black; /* Set number color to black */
         font-size: 16px; /* Make font size smaller */
-        padding: 5px; /* Add padding for spacing */
     }
     .letter {
         display: flex;
@@ -69,18 +68,33 @@ layout: default
         align-items: center;
         margin-top: 20px; /* Adjust the top margin as needed */
     }
-    .hint-box {
+    .hint-bsox {
         background-color: black;
         color: white;
         border-radius: 10px;
         padding: 10px;
         font-size: 18px;
-        width: 800px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 400px;
+        height: 400px;
+        top: 20%;
+        left: 10%;
         text-align: center;
+    }
+    .hint-box-across {
+        position: fixed;
+        top: 50%;
+        left: 18%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(38, 152, 255, 0.3) !important;
+        padding: 20px;
+        width: 300px;
+        height: 600px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        font-size: 15px;
+        font-family: Verdana, sans-serif;
+        text-align: center;
+        overflow-y: auto; /*Enable vertical scroll if needed */
     }
     .input-box {
         padding: 10px;
@@ -141,14 +155,20 @@ layout: default
         <div class="whitebox" id="box32"><span class="number"></span></div>
         <div class="blackbox"></div>
         <div class="whitebox" id="box33"><span class="number"></span></div>
-        <div class="whitebox" id="box34"><span class="number">11</span></div>   
+        <div class="whitebox" id="box34"><span class="number">11</span></div>
         <div class="whitebox" id="box35"><span class="number"></span></div>
         <div class="whitebox" id="box36"><span class="number"></span></div>
         <div class="whitebox" id="box37"><span class="number"></span></div>
     </div>
-    <div class="hint-box">
-    This is a hint box with some text.
-</div>
+    <div class="hint-box-across">
+    <h2>ACROSS</h2> <br><br>
+    1: Provides security, or a sense of feeling more secured <br><br>
+    6: Entertain and bring joy<br><br>
+    8: European country famous for its cuisine and culture (Beside Portugal)<br><br>
+    10: Lower briefly into a liquid, also a type of sauce<br><br>
+    11: Give way or surrender<br><br>
+    5: Not new; ancient or aged
+    </div>
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
 <script>
@@ -353,7 +373,6 @@ function checkAnswer() {
         }
     } else {
         console.log("Sorry, that's not correct. Please try again.");
-        alert('Incorrect word, try again');
     }
 }
 // Populate hint box with the first hint
@@ -365,16 +384,16 @@ document.querySelector('.input-box').addEventListener('keyup', function(event) {
         checkAnswer();
     }
 });
-function populateHintBox() {
-    const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
-    if (hint) {
-        document.querySelector('.hint-box').innerText = hint;
-        document.querySelector('.hint-box').setAttribute('data-hint', hintIndex);
-    } else {
-        console.log("No hint provided for the specified hint number.");
-    }
-    hintIndex++;
-}
+// function populateHintBox() {
+//     const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
+//     if (hint) {
+//         document.querySelector('.hint-box').innerText = hint;
+//         document.querySelector('.hint-box').setAttribute('data-hint', hintIndex);
+//     } else {
+//         console.log("No hint provided for the specified hint number.");
+//     }
+//     hintIndex++;
+// }
 
 </script>
 </body>
