@@ -96,6 +96,11 @@ layout: default
     <h2>Hard</h2>
     <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Crossword-Hard.html"><center>Hard Mode</center></a>
   </div>
+      <div class="box">
+    <img src="https://media.istockphoto.com/id/482748802/photo/crossword-puzzle-game-and-pencil.jpg?s=1024x1024&w=is&k=20&c=MpgKb_EOu6HgmU19LBFiurfpfgF2ffgbIB0FO1_040c=" alt="Tic Tac Toe Hard">
+    <h2>Hard</h2>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Crossword.html"><center>Exccesively hard Mode</center></a>
+  </div>
   
 </div>
 
