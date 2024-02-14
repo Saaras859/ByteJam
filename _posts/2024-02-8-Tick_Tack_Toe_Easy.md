@@ -286,7 +286,6 @@ function makeAIMoveWithDelay() {
     }, 500); // 0.5-second delay
 }
 
-
 // Function to initialize the game
 function initGame() {
     assignRoles();
