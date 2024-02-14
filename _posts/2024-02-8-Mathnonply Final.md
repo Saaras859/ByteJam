@@ -167,9 +167,9 @@ layout: default
         <div class="box" id="box0"></div>
         <div class="box" id="box1">100</div>
         <div class="box" id="box2">150</div>
-        <div class="box" id="box3">-20</div>
+        <div class="box" id="box3">20</div>
         <div class="box" id="box4">200</div>
-        <div class="box" id="box15">-30</div>
+        <div class="box" id="box15">30</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
@@ -178,16 +178,16 @@ layout: default
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
-        <div class="box" id="box6">-60</div>
+        <div class="box" id="box6">60</div>
         <div class="box" id="box13">20</div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="emptybox"></div>
         <div class="box" id="box7">-50</div>
-        <div class="box" id="box12">-5</div>
-        <div class="box" id="box11">-10</div>
+        <div class="box" id="box12">5</div>
+        <div class="box" id="box11">10</div>
         <div class="box" id="box10">30</div>
-        <div class="box" id="box9">-70</div>
+        <div class="box" id="box9">70</div>
         <div class="box" id="box8">5</div>
         <div class="player" id="player"></div>
         <div class="ai" id="ai-dot"></div>
@@ -213,19 +213,19 @@ layout: default
         0: 0,
         1: 100,
         2: 150,
-        3: -20,
+        3: 20,
         4: 200,
         5: 140,
-        6: -60,
+        6: 60,
         7: -50,
         8: 5,
-        9: -70,
+        9: 70,
         10: 30,
-        11: -10,
-        12: -5,
+        11: 10,
+        12: 5,
         13: 20,
         14: 10,
-        15: -30
+        15: 30
     };
 
     function generateQuestion() {
