@@ -227,9 +227,6 @@ function makeAIMove() {
 
                 // Check if AI wins after its move
                 if (checkWin(aiSymbol)) {
-                    alert(`AI wins!`);
-                    // Update AI's score
-                    aiMoney++;
                     document.getElementById('ai-money').textContent = `AI Score: ${aiMoney}`;
                 }
                 return;
