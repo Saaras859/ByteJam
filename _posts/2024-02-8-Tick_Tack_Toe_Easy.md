@@ -22,6 +22,22 @@ layout: default
         justify-content: center;
         align-items: center;
     }
+        .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+    .home-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .home-button a:hover {
+        background-color: #0056b3;
+    }
     .container {
         display: grid;
         grid-template-columns: repeat(3, 150px);
@@ -92,6 +108,9 @@ layout: default
     <div id="player-money" class="money-box player-money">Player Score: 0</div>
     <div id="ai-money" class="money-box ai-money">AI Score: 0</div>
 </div>
+    <div class="home-button">
+        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    </div>
 
 <script>
 // JavaScript to handle the tic-tac-toe game logic

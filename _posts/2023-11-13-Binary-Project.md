@@ -40,6 +40,22 @@ layout: default
         transform: scaleX(1);
         transform-origin: bottom left;
         }
+        .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+    .home-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .home-button a:hover {
+        background-color: #0056b3;
+    }
         .playercardsbox::before, .dealercardsbox::before {
         content: " ";
         display: block;
@@ -191,6 +207,9 @@ layout: default
     <button class="standbutton" onclick="stand()">Stand</button>
     <button class="resetbutton" onclick="resetGame()">Reset</button>
 </div>
+    <div class="home-button">
+        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    </div>
 <script>
    function confetti() {
     // Define the number of confetti pieces you want to create

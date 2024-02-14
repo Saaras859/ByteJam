@@ -23,6 +23,22 @@ layout: default
     align-items: center; /* Center content horizontally */
     margin-top: 5px;
 }
+    .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+    .home-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .home-button a:hover {
+        background-color: #0056b3;
+    }
     .container {
         display: grid;
         grid-template-columns: repeat(5, 100px);
@@ -141,7 +157,9 @@ layout: default
 </style>
 </head>
 <body>
-
+    <div class="home-button">
+        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    </div>
 <div id="game-container">
     <div class="container">
         <!-- 16 light gray boxes -->

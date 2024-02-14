@@ -44,6 +44,22 @@ layout: default
     color: #333;
     font-weight: bold;
   }
+    .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+    .home-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .home-button a:hover {
+        background-color: #0056b3;
+    }
 </style>
 </head>
 <body>
@@ -57,6 +73,9 @@ layout: default
     <h2>Hard</h2>
     <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Tick_Tack_Toe_Hard.html">Hard Mode</a>
   </div>
+    <div class="home-button">
+        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    </div>
 </div>
 
 </body>

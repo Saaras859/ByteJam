@@ -29,6 +29,22 @@ layout: default
         grid-template-rows: repeat(7, 75px); /* Adjust box height */
         gap: 5px; /* Smaller gap between boxes */
     }
+        .home-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+    .home-button a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .home-button a:hover {
+        background-color: #0056b3;
+    }  
     .whitebox {
         position: relative;
         background-color: white; /* Light gray */
@@ -161,6 +177,9 @@ layout: default
     <div class="hint-box">
     This is a hint box with some text.
 </div>
+    <div class="home-button">
+        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    </div>
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
         <div class="timer-box" id="timer">03:00</div>
