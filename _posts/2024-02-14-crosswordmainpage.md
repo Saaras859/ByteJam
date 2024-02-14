@@ -78,7 +78,7 @@ layout: default
 </style>
 </head>
 <body>
-<h1 class="welcome-heading">Challenge yourself with some Tic Tac Toe!</h1>
+<h1 class="welcome-heading">Challenge yourself with some crosswords!</h1>
 
 <div class="container">
   <div class="box">
