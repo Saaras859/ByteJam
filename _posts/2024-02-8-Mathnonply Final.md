@@ -72,7 +72,7 @@ layout: default
         margin-top: 20px;
     }
     #user-answer {
-        font-size: 20px;
+        font-size: 16px;
         padding: 20px;
         margin-right: 10px;
         background-color: rgba(0, 0, 0, 0.9); /* Lighter shade of black */
@@ -82,8 +82,8 @@ layout: default
         outline: none; /* Remove outline */
         text-align: center; /* Center text horizontally */
         vertical-align: middle; /* Center text vertically */
-        width: 100px; /* Adjust width as needed */
-        height: 30px; /* Adjust height as needed */
+        width: 200px; /* Adjust width as needed */
+        height: 50px; /* Adjust height as needed */
     }
     /* Styling for the dice roll result */
     #dice-roll {
@@ -183,7 +183,7 @@ layout: default
 </div>
 <br>
 <div id="question">Question: <span id="current-question"></span></div>
-<div id="answer"><input type="text" id="user-answer" onkeypress="checkEnter(event)"></div>
+<div id="answer"><input type="text" id="user-answer" onkeypress="checkEnter(event)" placeholder="Answer"></div>
 
 <script>
     let playerPosition = 0; // Start from 0
@@ -358,7 +358,7 @@ function submitAnswer() {
         }
     }
 
-    
+
 </script>
 </body>
 </html>

@@ -95,7 +95,7 @@ layout: default
         top: 10%;
         left: 90%;
         transform: translate(-50%, -50%);
-        background-color: rgba(38, 152, 255, 0.3) !important;
+        background-color: black;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

@@ -68,33 +68,18 @@ layout: default
         align-items: center;
         margin-top: 20px; /* Adjust the top margin as needed */
     }
-    .hint-bsox {
+    .hint-box {
         background-color: black;
         color: white;
         border-radius: 10px;
         padding: 10px;
         font-size: 18px;
-        width: 400px;
-        height: 400px;
-        top: 20%;
-        left: 10%;
+        width: 800px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-    }
-    .hint-box-across {
-        position: fixed;
-        top: 50%;
-        left: 18%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(38, 152, 255, 0.3) !important;
-        padding: 20px;
-        width: 300px;
-        height: 600px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        font-size: 15px;
-        font-family: Verdana, sans-serif;
-        text-align: center;
-        overflow-y: auto; /*Enable vertical scroll if needed */
     }
     .input-box {
         padding: 10px;
@@ -104,13 +89,12 @@ layout: default
         width: 300px;
         margin-top: 10px;
     }
-        
-    .timer-box {
+       .timer-box {
         position: fixed;
         top: 10%;
         left: 90%;
         transform: translate(-50%, -50%);
-        background-color: rgba(38, 152, 255, 0.3) !important;
+        background-color: black;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -123,24 +107,24 @@ layout: default
 <div id="game-container">
     <div class="container">
         <!-- 81 white and black boxes -->
-        <div class="whitebox" id="box1"><span class="number">1</span></div>
+        <div class="whitebox" id="box1"><span class="number"></span></div>
         <div class="whitebox" id="box2"><span class="number"></span></div>
-        <div class="whitebox" id="box3"><span class="number">2</span></div>
+        <div class="whitebox" id="box3"><span class="number"></span></div>
         <div class="whitebox" id="box4"><span class="number"></span></div>
-        <div class="whitebox" id="box5"><span class="number">3</span></div>
+        <div class="whitebox" id="box5"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box6"><span class="number">4</span></div>
+        <div class="whitebox" id="box6"><span class="number"></span></div>
         <div class="whitebox" id="box7"><span class="number"></span></div>
         <div class="blackbox"></div>
         <div class="whitebox" id="box8"><span class="number"></span></div>
         <div class="blackbox"></div>
-        <div class="whitebox" id="box9"><span class="number">5</span></div>
+        <div class="whitebox" id="box9"><span class="number"></span></div>
         <div class="whitebox" id="box10"><span class="number"></span></div>
         <div class="whitebox" id="box11"><span class="number"></span></div>
-       <div class="whitebox" id="box12"><span class="number">6</span></div>
+       <div class="whitebox" id="box12"><span class="number"></span></div>
        <div class="whitebox" id="box13"><span class="number"></span></div>
        <div class="whitebox" id="box14"><span class="number"></span></div>
-        <div class="whitebox" id="box15"><span class="number">7</span></div>
+        <div class="whitebox" id="box15"><span class="number"></span></div>
         <div class="whitebox" id="box16"><span class="number"></span></div>
         <div class="blackbox"></div>
         <div class="whitebox" id="box17"><span class="number"></span></div>
@@ -154,12 +138,12 @@ layout: default
         <div class="whitebox" id="box21"><span class="number"></span></div>
         <div class="blackbox"></div>
        <div class="whitebox" id="box22"><span class="number"></span></div>
-       <div class="whitebox" id="box23"><span class="number">8</span></div>
+       <div class="whitebox" id="box23"><span class="number"></span></div>
         <div class="whitebox" id="box24"><span class="number"></span></div>
-        <div class="whitebox" id="box25"><span class="number">9</span></div>
+        <div class="whitebox" id="box25"><span class="number"></span></div>
         <div class="whitebox" id="box26"><span class="number"></span></div>
         <div class="whitebox" id="box27"><span class="number"></span></div>
-        <div class="whitebox" id="box28"><span class="number">10</span></div>
+        <div class="whitebox" id="box28"><span class="number"></span></div>
         <div class="whitebox" id="box29"><span class="number"></span></div>
         <div class="blackbox"></div>
         <div class="whitebox" id="box30"><span class="number"></span></div>
@@ -168,20 +152,14 @@ layout: default
         <div class="whitebox" id="box32"><span class="number"></span></div>
         <div class="blackbox"></div>
         <div class="whitebox" id="box33"><span class="number"></span></div>
-        <div class="whitebox" id="box34"><span class="number">11</span></div>
+        <div class="whitebox" id="box34"><span class="number"></span></div>   
         <div class="whitebox" id="box35"><span class="number"></span></div>
         <div class="whitebox" id="box36"><span class="number"></span></div>
         <div class="whitebox" id="box37"><span class="number"></span></div>
     </div>
-    <div class="hint-box-across">
-    <h2>ACROSS</h2> <br><br>
-    1: Provides security, or a sense of feeling more secured <br><br>
-    6: Entertain and bring joy<br><br>
-    8: European country famous for its cuisine and culture (Beside Portugal)<br><br>
-    10: Lower briefly into a liquid, also a type of sauce<br><br>
-    11: Give way or surrender<br><br>
-    5: Not new; ancient or aged
-    </div>
+    <div class="hint-box">
+    This is a hint box with some text.
+</div>
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
         <div class="timer-box" id="timer">03:00</div>
@@ -399,17 +377,17 @@ document.querySelector('.input-box').addEventListener('keyup', function(event) {
         checkAnswer();
     }
 });
-// function populateHintBox() {
-//     const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
-//     if (hint) {
-//         document.querySelector('.hint-box').innerText = hint;
-//         document.querySelector('.hint-box').setAttribute('data-hint', hintIndex);
-//     } else {
-//         console.log("No hint provided for the specified hint number.");
-//     }
-//     hintIndex++;
-// }
-  const timerDuration = 3 * 60; // in seconds
+function populateHintBox() {
+    const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
+    if (hint) {
+        document.querySelector('.hint-box').innerText = hint;
+        document.querySelector('.hint-box').setAttribute('data-hint', hintIndex);
+    } else {
+        console.log("No hint provided for the specified hint number.");
+    }
+    hintIndex++;
+}
+const timerDuration = 3 * 60; // in seconds
         let timeRemaining = timerDuration;
 
         // Function to start the timer
