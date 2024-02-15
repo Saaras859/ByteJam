@@ -101,6 +101,7 @@ let playerMoney = 0;
 let aiMoney = 0;
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
 
+
 // Define winning combinations
 const winningCombinations = [
     [0, 1, 2], // Top row
