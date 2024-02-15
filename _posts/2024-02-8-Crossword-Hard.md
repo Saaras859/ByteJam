@@ -65,6 +65,7 @@ layout: default
         color: black; /* Set number color to black */
         font-size: 16px; /* Make font size smaller */
         padding: 5px; /* Add padding for spacing */
+            visibility: visible; /* Ensure the number is always visible */
     }
     .letter {
         display: flex;
@@ -117,20 +118,36 @@ layout: default
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         font-size: 30px;
         font-family: Verdana, sans-serif;
-        }
+    }
+    .give-up-button {
+        margin-top: 10px;
+        position: fixed;
+        top: 92%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+        background-color: red; 
+        color: red;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .give-up-button:hover {
+        background-color: #cc0000; 
+    }
 </style>
 </head>
 <body>
 <div id="game-container">
     <div class="container">
         <!-- 81 white and black boxes -->
-            <div class="whitebox" id="box1"><span class="number"></span></div>
+            <div class="whitebox" id="box1"><span class="number">1</span></div>
             <div class="whitebox" id="box2"><span class="number"></span></div>
-            <div class="whitebox" id="box3"><span class="number"></span></div>
+            <div class="whitebox" id="box3"><span class="number">2</span></div>
             <div class="whitebox" id="box4"><span class="number"></span></div>
-            <div class="whitebox" id="box5"><span class="number"></span></div>
+            <div class="whitebox" id="box5"><span class="number">3</span></div>
             <div class="whitebox" id="box6"><span class="number"></span></div>
-            <div class="whitebox" id="box7"><span class="number"></span></div>
+            <div class="whitebox" id="box7"><span class="number">4</span></div>
             <div class="whitebox" id="box8"><span class="number"></span></div>
         <div class="blackbox"></div>
             <div class="whitebox" id="box9"><span class="number"></span></div>
@@ -138,7 +155,7 @@ layout: default
             <div class="whitebox" id="box10"><span class="number"></span></div>
         <div class="blackbox"></div>
             <div class="whitebox" id="box11"><span class="number"></span></div>
-            <div class="whitebox" id="box12"><span class="number"></span></div>
+            <div class="whitebox" id="box12"><span class="number">5</span></div>
             <div class="whitebox" id="box13"><span class="number"></span></div>
             <div class="whitebox" id="box14"><span class="number"></span></div>
             <div class="whitebox" id="box15"><span class="number"></span></div>
@@ -152,7 +169,7 @@ layout: default
             <div class="whitebox" id="box21"><span class="number"></span></div>
         <div class="blackbox"></div>
             <div class="whitebox" id="box22"><span class="number"></span></div>
-            <div class="whitebox" id="box23"><span class="number"></span></div>
+            <div class="whitebox" id="box23"><span class="number">6</span></div>
             <div class="whitebox" id="box24"><span class="number"></span></div>
             <div class="whitebox" id="box25"><span class="number"></span></div>
             <div class="whitebox" id="box26"><span class="number"></span></div>
@@ -166,7 +183,7 @@ layout: default
             <div class="whitebox" id="box32"><span class="number"></span></div>
         <div class="blackbox"></div>
             <div class="whitebox" id="box33"><span class="number"></span></div>
-            <div class="whitebox" id="box34"><span class="number"></span></div>
+            <div class="whitebox" id="box34"><span class="number">7</span></div>
             <div class="whitebox" id="box35"><span class="number"></span></div>
             <div class="whitebox" id="box36"><span class="number"></span></div>
             <div class="whitebox" id="box37"><span class="number"></span></div>
@@ -183,6 +200,7 @@ layout: default
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
         <div class="timer-box" id="timer">01:00</div>
+    <button class="give-up-button" onclick="giveUp()">Give Up :(</button>
 
 <script>
     // Your existing JavaScript code here
@@ -230,16 +248,16 @@ layout: default
     };
     const wordHints = {
         Across: {
-            1: "Host of 1996 summer olympics games",
-            5: "Red line on the London underground train network",
-            6: "Apes, monkeys",
-            7: "Each of the parts into which somehting is or may be divided"
+            1: "1A. Host of 1996 summer olympics games",
+            5: "5A. Red line on the London underground train network",
+            6: "6A. Apes, monkeys",
+            7: "7A. Each of the parts into which somehting is or may be divided"
         },
         Down: {
-            1.1: "Consents to receive or undertake (something offered)",
-            2: "Capital of US State Michigan",
-            3: "Tell a story as it happens",
-            4: "Minor illness or disorder"
+            1.1: "1D. Consents to receive or undertake (something offered)",
+            2: "2D. Capital of US State Michigan",
+            3: "3D. Tell a story as it happens",
+            4: "4D. Minor illness or disorder"
         }
     };
     const hintBoxMapping = {
@@ -293,6 +311,7 @@ function checkAnswer() {
         hintBoxMapping[currentWordKey].forEach(boxId => {
             document.getElementById(boxId).innerText = boxLetterMapping[boxId];
         });
+         ensureNumbersVisible(); // Ensure numbers are always visible after revealing the word
         console.log("Congratulations! You got it right!");
         // Clear the input box
         document.querySelector('.input-box').value = '';
@@ -394,6 +413,12 @@ document.querySelector('.input-box').addEventListener('keyup', function(event) {
         checkAnswer();
     }
 });
+function ensureNumbersVisible() {
+    const numberElements = document.querySelectorAll('.number');
+    numberElements.forEach(element => {
+        element.style.visibility = 'visible';
+    });
+}
 function populateHintBox() {
     const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
     if (hint) {
@@ -435,6 +460,89 @@ function populateHintBox() {
 
         // Start the timer when the page loads
         startTimer();
+
+function giveUp() {
+        timeRemaining -= 10;
+
+    // Retrieve the correct word based on the displayed hint
+    const displayedHint = document.querySelector('.hint-box').innerText.trim();
+    let currentWordHints;
+    let currentWordDirection;
+    if (acrossWordsCompleted && !downWordsCompleted) {
+        currentWordHints = wordHints['Down'];
+        currentWordDirection = 'Down';
+    } else {
+        currentWordHints = wordHints['Across'];
+        currentWordDirection = 'Across';
+    }
+
+    const currentWordKey = Object.keys(currentWordHints).find(key => currentWordHints[key] === displayedHint);
+    const correctLetters = hintBoxMapping[currentWordKey].map(box => boxLetterMapping[box]).join('');
+
+    // Display the correct word on the crossword
+    hintBoxMapping[currentWordKey].forEach(boxId => {
+        document.getElementById(boxId).innerText = boxLetterMapping[boxId];
+    });
+    ensureNumbersVisible(); // Ensure numbers are always visible after revealing the word
+    console.log("The correct word is:", correctLetters);
+    alert("The correct word is: " + correctLetters + ", Taking of 10 seconds");
+
+    // Move to the next hint or word
+    const nextWordKeys = Object.keys(currentWordHints);
+    const nextWordIndex = nextWordKeys.indexOf(currentWordKey) + 1;
+    if (nextWordIndex < nextWordKeys.length) {
+        // If there are more hints for the current direction, move to the next hint
+        const nextWordKey = nextWordKeys[nextWordIndex];
+        const nextHint = currentWordHints[nextWordKey];
+        document.querySelector('.hint-box').innerText = nextHint;
+    } else {
+        // If all words in the current direction are completed, switch to the other direction
+        if (currentWordDirection === 'Across') {
+            acrossWordsCompleted = true;
+            if (!downWordsCompleted) {
+                // If down words are not completed, switch to down words
+                currentWordHints = wordHints['Down'];
+                const firstDownHint = currentWordHints[Object.keys(currentWordHints)[0]];
+                const firstDownHintNumber = Object.keys(currentWordHints)[0];
+                document.querySelector('.hint-box').innerText = firstDownHint;
+                document.querySelector('.hint-box').setAttribute('data-hint', firstDownHintNumber);
+                // Clear the input box and perform any other actions for the next word
+                document.querySelector('.input-box').value = '';
+                console.log("Moving to the down words.");
+            } else {
+                console.log("All words completed.");
+                console.log("Well done! All words guessed correctly!");
+                // Change hint box background color to black
+                document.querySelector('.hint-box').style.backgroundColor = 'black';
+                // Display "Well done! All words guessed correctly!" in the console
+                console.log("Well done! All words guessed correctly!");
+                // Perform any necessary actions if all words are completed
+            }
+        } else if (currentWordDirection === 'Down') {
+            downWordsCompleted = true;
+            if (!acrossWordsCompleted) {
+                // If across words are not completed, switch to across words
+                currentWordHints = wordHints['Across'];
+                const firstAcrossHint = currentWordHints[Object.keys(currentWordHints)[0]];
+                const firstAcrossHintNumber = Object.keys(currentWordHints)[0];
+                document.querySelector('.hint-box').innerText = firstAcrossHint;
+                document.querySelector('.hint-box').setAttribute('data-hint', firstAcrossHintNumber);
+                // Clear the input box and perform any other actions for the next word
+                document.querySelector('.input-box').value = '';
+                console.log("Moving to the across words.");
+            } else {
+                console.log("All words completed.");
+                console.log("Well done! All words guessed correctly!");
+                // Change hint box background color to black
+                document.querySelector('.hint-box').style.backgroundColor = 'black';
+                // Display "Well done! All words guessed correctly!" in the console
+                console.log("Well done! All words guessed correctly!");
+                // Perform any necessary actions if all words are completed
+            }
+        }
+    }
+}
+
 </script>
 </body>
 </html>

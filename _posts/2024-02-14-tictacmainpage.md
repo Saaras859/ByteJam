@@ -84,12 +84,12 @@ layout: default
   <div class="box">
     <img src="https://as1.ftcdn.net/v2/jpg/00/42/79/76/1000_F_42797620_sNsiHXxAcuWJnTr5GyywQ8oWTQH0gfvP.jpg" alt="Tic Tac Toe Easy">
     <h2>Easy</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Tick_Tack_Toe_Easy.html"><center>Easy Mode</center></a>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Tick_Tac_Toe_Easy.html"><center>Easy Mode</center></a>
   </div>
   <div class="box">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/1200px-Tic_tac_toe.svg.png" alt="Tic Tac Toe Hard">
     <h2>Hard</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Tick_Tack_Toe_Hard.html"><center>Hard Mode</center></a>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Tick_Tac_Toe_Hard.html"><center>Hard Mode</center></a>
   </div>
 </div>
 

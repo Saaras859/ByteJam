@@ -117,6 +117,22 @@ layout: default
         font-size: 30px;
         font-family: Verdana, sans-serif;
         }
+          .give-up-button {
+        margin-top: 10px;
+        position: fixed;
+        top: 92%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+        background-color: red; 
+        color: red;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .give-up-button:hover {
+        background-color: #cc0000; 
+    }  
 </style>
 </head>
 <body>
@@ -181,7 +197,8 @@ layout: default
     </div>
 <input type="text" class="input-box" placeholder="Guess the word :)" autocomplete="off">
 </div>
-        <div class="timer-box" id="timer">03:00</div>
+        <div class="timer-box" id="timer">00:30</div>
+    <button class="give-up-button" onclick="giveUp()">Give Up :(</button>
 
 <script>
     // Your existing JavaScript code here
@@ -396,6 +413,12 @@ document.querySelector('.input-box').addEventListener('keyup', function(event) {
         checkAnswer();
     }
 });
+function ensureNumbersVisible() {
+    const numberElements = document.querySelectorAll('.number');
+    numberElements.forEach(element => {
+        element.style.visibility = 'visible';
+    });
+}
 function populateHintBox() {
     const hint = hintIndex % 2 === 1 ? wordHints['Across'][hintIndex] : wordHints['Down'][Math.ceil(hintIndex / 2)];
     if (hint) {
@@ -406,7 +429,7 @@ function populateHintBox() {
     }
     hintIndex++;
 }
-const timerDuration = 3 * 60; // in seconds
+const timerDuration = 0.5 * 60; // in seconds
         let timeRemaining = timerDuration;
 
         // Function to start the timer
@@ -437,6 +460,87 @@ const timerDuration = 3 * 60; // in seconds
 
         // Start the timer when the page loads
         startTimer();
+function giveUp() {
+        timeRemaining -= 10;
+
+    // Retrieve the correct word based on the displayed hint
+    const displayedHint = document.querySelector('.hint-box').innerText.trim();
+    let currentWordHints;
+    let currentWordDirection;
+    if (acrossWordsCompleted && !downWordsCompleted) {
+        currentWordHints = wordHints['Down'];
+        currentWordDirection = 'Down';
+    } else {
+        currentWordHints = wordHints['Across'];
+        currentWordDirection = 'Across';
+    }
+
+    const currentWordKey = Object.keys(currentWordHints).find(key => currentWordHints[key] === displayedHint);
+    const correctLetters = hintBoxMapping[currentWordKey].map(box => boxLetterMapping[box]).join('');
+
+    // Display the correct word on the crossword
+    hintBoxMapping[currentWordKey].forEach(boxId => {
+        document.getElementById(boxId).innerText = boxLetterMapping[boxId];
+    });
+    ensureNumbersVisible(); // Ensure numbers are always visible after revealing the word
+    console.log("The correct word is:", correctLetters);
+    alert("The correct word is: " + correctLetters + ", Taking of 10 seconds");
+
+    // Move to the next hint or word
+    const nextWordKeys = Object.keys(currentWordHints);
+    const nextWordIndex = nextWordKeys.indexOf(currentWordKey) + 1;
+    if (nextWordIndex < nextWordKeys.length) {
+        // If there are more hints for the current direction, move to the next hint
+        const nextWordKey = nextWordKeys[nextWordIndex];
+        const nextHint = currentWordHints[nextWordKey];
+        document.querySelector('.hint-box').innerText = nextHint;
+    } else {
+        // If all words in the current direction are completed, switch to the other direction
+        if (currentWordDirection === 'Across') {
+            acrossWordsCompleted = true;
+            if (!downWordsCompleted) {
+                // If down words are not completed, switch to down words
+                currentWordHints = wordHints['Down'];
+                const firstDownHint = currentWordHints[Object.keys(currentWordHints)[0]];
+                const firstDownHintNumber = Object.keys(currentWordHints)[0];
+                document.querySelector('.hint-box').innerText = firstDownHint;
+                document.querySelector('.hint-box').setAttribute('data-hint', firstDownHintNumber);
+                // Clear the input box and perform any other actions for the next word
+                document.querySelector('.input-box').value = '';
+                console.log("Moving to the down words.");
+            } else {
+                console.log("All words completed.");
+                console.log("Well done! All words guessed correctly!");
+                // Change hint box background color to black
+                document.querySelector('.hint-box').style.backgroundColor = 'black';
+                // Display "Well done! All words guessed correctly!" in the console
+                console.log("Well done! All words guessed correctly!");
+                // Perform any necessary actions if all words are completed
+            }
+        } else if (currentWordDirection === 'Down') {
+            downWordsCompleted = true;
+            if (!acrossWordsCompleted) {
+                // If across words are not completed, switch to across words
+                currentWordHints = wordHints['Across'];
+                const firstAcrossHint = currentWordHints[Object.keys(currentWordHints)[0]];
+                const firstAcrossHintNumber = Object.keys(currentWordHints)[0];
+                document.querySelector('.hint-box').innerText = firstAcrossHint;
+                document.querySelector('.hint-box').setAttribute('data-hint', firstAcrossHintNumber);
+                // Clear the input box and perform any other actions for the next word
+                document.querySelector('.input-box').value = '';
+                console.log("Moving to the across words.");
+            } else {
+                console.log("All words completed.");
+                console.log("Well done! All words guessed correctly!");
+                // Change hint box background color to black
+                document.querySelector('.hint-box').style.backgroundColor = 'black';
+                // Display "Well done! All words guessed correctly!" in the console
+                console.log("Well done! All words guessed correctly!");
+                // Perform any necessary actions if all words are completed
+            }
+        }
+    }
+}
 </script>
 </body>
 </html>
