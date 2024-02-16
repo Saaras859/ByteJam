@@ -21,7 +21,7 @@ layout: default
             letter-spacing: 4px;
         }
         #slot-machine {
-            width: 400px;
+            width: 700px;
             margin: 0 auto;
             padding: 20px;
             background-color: #222;
