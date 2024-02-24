@@ -16,7 +16,7 @@
   }
   .container {
     max-width: 600px;
-    background-color: #fff;
+    background-color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -25,11 +25,11 @@
   #wheel {
     width: 300px;
     height: 300px;
-    background-color: #f2f2f2;
+    background-color: #f9c74f;
     border-radius: 50%;
     position: relative;
     margin: 20px auto;
-    border: 10px solid #fff;
+    border: 10px solid #f4a261;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
   }
@@ -38,7 +38,7 @@
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 20px solid red;
+    border-bottom: 20px solid #e63946;
     position: absolute;
     top: 30px;
     left: 50%;
@@ -49,14 +49,14 @@
     padding: 15px 30px;
     font-size: 20px;
     cursor: pointer;
-    background-color: #ff5c5c;
+    background-color: #a8dadc;
     border: none;
     color: #fff;
     border-radius: 5px;
     transition: background-color 0.3s;
   }
   #spinBtn:hover {
-    background-color: #ff2e2e;
+    background-color: #457b9d;
   }
   .confetti {
     width: 10px;
@@ -78,12 +78,15 @@
 <body>
 
 <div class="container">
-  <h1>Spin the Wheel</h1>
+  <h1 style="color: #2a9d8f;">Spin the Wheel</h1>
   <div id="wheel">
     <div id="pointer"></div>
     <div id="confettiContainer"></div>
   </div>
   <button id="spinBtn">Spin</button>
+  <br>
+  <label for="nameInput">Enter your name:</label>
+  <input type="text" id="nameInput">
 </div>
 
 <script>
@@ -102,6 +105,7 @@
   const pointer = document.getElementById('pointer');
   const spinBtn = document.getElementById('spinBtn');
   const confettiContainer = document.getElementById('confettiContainer');
+  const nameInput = document.getElementById('nameInput');
 
   const spinDuration = 5000; // in milliseconds
   let spinning = false;
@@ -123,7 +127,10 @@
       let sectorIndex = Math.floor(deg / (360 / sectors.length));
       const result = sectors[sectorIndex];
 
-      alert(`You won ${result.name}!`);
+      alert(`Congratulations, ${nameInput.value}! You won ${result.name}!`);
+
+      // Store name locally
+      localStorage.setItem('playerName', nameInput.value);
 
       // Create confetti
       for (let i = 0; i < 50; i++) {
@@ -142,6 +149,12 @@
 
       spinning = false;
     }, spinDuration);
+  }
+
+  // Retrieve name from localStorage if available
+  const storedName = localStorage.getItem('playerName');
+  if (storedName) {
+    nameInput.value = storedName;
   }
 </script>
 
