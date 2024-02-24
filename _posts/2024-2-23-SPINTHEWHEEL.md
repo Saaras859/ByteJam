@@ -31,6 +31,7 @@
     margin: 20px auto;
     border: 10px solid #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
   }
   #pointer {
     width: 0;
@@ -57,6 +58,21 @@
   #spinBtn:hover {
     background-color: #ff2e2e;
   }
+  .confetti {
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: fall 3s ease-out infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
+  }
 </style>
 </head>
 <body>
@@ -65,6 +81,7 @@
   <h1>Spin the Wheel</h1>
   <div id="wheel">
     <div id="pointer"></div>
+    <div id="confettiContainer"></div>
   </div>
   <button id="spinBtn">Spin</button>
 </div>
@@ -82,6 +99,7 @@
   const wheel = document.getElementById('wheel');
   const pointer = document.getElementById('pointer');
   const spinBtn = document.getElementById('spinBtn');
+  const confettiContainer = document.getElementById('confettiContainer');
 
   const spinDuration = 5000; // in milliseconds
   let spinning = false;
@@ -104,6 +122,16 @@
       const result = sectors[sectorIndex];
 
       alert(`You won ${result.name}!`);
+
+      // Create confetti
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confettiContainer.appendChild(confetti);
+      }
+
       spinning = false;
     }, spinDuration);
   }
