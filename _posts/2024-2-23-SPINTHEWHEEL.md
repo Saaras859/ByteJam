@@ -7,6 +7,19 @@
 <style>
   body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
   #wheel {
@@ -16,6 +29,8 @@
     border-radius: 50%;
     position: relative;
     margin: 20px auto;
+    border: 10px solid #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
   #pointer {
     width: 0;
@@ -24,24 +39,35 @@
     border-right: 15px solid transparent;
     border-bottom: 20px solid red;
     position: absolute;
-    top: 40px;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
   }
   #spinBtn {
     margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px;
+    font-size: 20px;
     cursor: pointer;
+    background-color: #ff5c5c;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  #spinBtn:hover {
+    background-color: #ff2e2e;
   }
 </style>
 </head>
 <body>
 
-<div id="wheel">
-  <div id="pointer"></div>
+<div class="container">
+  <h1>Spin the Wheel</h1>
+  <div id="wheel">
+    <div id="pointer"></div>
+  </div>
+  <button id="spinBtn">Spin</button>
 </div>
-<button id="spinBtn">Spin</button>
 
 <script>
   const sectors = [
