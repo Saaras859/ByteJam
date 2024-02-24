@@ -61,11 +61,11 @@
   .confetti {
     width: 10px;
     height: 10px;
-    background-color: #ffcc00;
     position: absolute;
     top: 0;
     left: 0;
     animation: fall 3s ease-out infinite;
+    opacity: 0;
   }
   @keyframes fall {
     0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
@@ -95,6 +95,8 @@
     { name: "5 Points", value: 5 },
     { name: "2 Points", value: 2 }
   ];
+
+  const colors = ['#ffcc00', '#ff69b4', '#00bfff', '#ff4500', '#32cd32', '#9400d3'];
 
   const wheel = document.getElementById('wheel');
   const pointer = document.getElementById('pointer');
@@ -127,10 +129,16 @@
       for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         confetti.style.left = Math.random() * 100 + '%';
         confetti.style.animationDelay = Math.random() * 3 + 's';
         confettiContainer.appendChild(confetti);
       }
+
+      // Stop confetti after 3 seconds
+      setTimeout(() => {
+        confettiContainer.innerHTML = '';
+      }, 3000);
 
       spinning = false;
     }, spinDuration);
