@@ -73,6 +73,19 @@
     80% { opacity: 1; }
     100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
   }
+  #winnerName {
+    font-weight: bold;
+    color: #2a9d8f;
+    margin-top: 20px;
+  }
+  #nameLabel {
+    color: #000;
+    margin-bottom: 10px;
+    display: block;
+  }
+  #nameInput {
+    margin-bottom: 20px;
+  }
 </style>
 </head>
 <body>
@@ -85,8 +98,10 @@
   </div>
   <button id="spinBtn">Spin</button>
   <br>
-  <label for="nameInput">Enter your name:</label>
+  <label for="nameInput" id="nameLabel">Enter your name:</label>
+  <br>
   <input type="text" id="nameInput">
+  <div id="winnerName"></div>
 </div>
 
 <script>
@@ -106,6 +121,7 @@
   const spinBtn = document.getElementById('spinBtn');
   const confettiContainer = document.getElementById('confettiContainer');
   const nameInput = document.getElementById('nameInput');
+  const winnerName = document.getElementById('winnerName');
 
   const spinDuration = 5000; // in milliseconds
   let spinning = false;
@@ -127,10 +143,14 @@
       let sectorIndex = Math.floor(deg / (360 / sectors.length));
       const result = sectors[sectorIndex];
 
-      alert(`Congratulations, ${nameInput.value}! You won ${result.name}!`);
+      const playerName = nameInput.value || "Player";
+      alert(`Congratulations, ${playerName}! You won ${result.name}!`);
 
       // Store name locally
-      localStorage.setItem('playerName', nameInput.value);
+      localStorage.setItem('playerName', playerName);
+
+      // Display winner name
+      winnerName.textContent = `Winner: ${playerName}`;
 
       // Create confetti
       for (let i = 0; i < 50; i++) {
