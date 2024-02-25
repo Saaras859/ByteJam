@@ -13,35 +13,62 @@ layout: default
 
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
   }
   .container {
-    max-width: 1000px; /* Increased max-width */
+    max-width: 800px;
     margin: 50px auto;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
   .box {
-    width: 48%; /* Adjusted width for two boxes per row */
+    width: 45%;
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px; /* Increased margin bottom */
-    text-align: center; /* Centered text */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .box h2 {
     margin-top: 0;
+    margin-bottom: 10px;
   }
   .box a {
     display: block;
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    border: 2px solid #333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  .box a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  .box img {
+    width: 100%; /* Make all images fill the container */
+    height: auto;
+    max-height: 200px; /* Set a maximum height for the images */
+    object-fit: cover; /* Ensure images maintain aspect ratio */
+    border-radius: 8px;
+  }
+  .welcome-heading {
+    text-align: center;
+    font-size: 36px;
+    color: white;
+    margin-bottom: 30px;
+    font-weight: 600;
   }
   .home-button {
     position: fixed;
@@ -58,22 +85,6 @@ layout: default
   }
   .home-button a:hover {
     background-color: #0056b3;
-  }
-  .box img {
-    width: 100%; /* Ensuring the images fill the container */
-    height: 200px; /* Specifying a fixed height */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px; /* Increased margin bottom for spacing */
-  }
-    .welcome-heading {
-    text-align: center;
-    font-size: 36px;
-    color: white;
-    margin-bottom: 30px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif; /* Apply the Poppins font family */
-
   }
 </style>
 </head>
