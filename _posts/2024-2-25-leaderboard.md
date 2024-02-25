@@ -42,22 +42,26 @@
     fetch('http://127.0.0.1:5000/leaderboard_data')
       .then(response => response.json())
       .then(data => {
+        // Sort data by points
+        data.sort((a, b) => b.points - a.points);
+
         // Clear previous leaderboard data
-        document.querySelector('table').innerHTML = `
+        const table = document.querySelector('table');
+        table.innerHTML = `
           <tr>
             <th>Username</th>
             <th>Points</th>
           </tr>
         `;
 
-        // Populate leaderboard table with fetched data
+        // Populate leaderboard table with sorted data
         data.forEach(entry => {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${entry.username}</td>
             <td>${entry.points}</td>
           `;
-          document.querySelector('table').appendChild(row);
+          table.appendChild(row);
         });
       })
       .catch(error => console.error('Error fetching leaderboard data:', error));
