@@ -8,8 +8,9 @@ layout: default
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Homepage</title>
+<title>Tic Tac Toe</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
   body {
     font-family: 'Poppins', sans-serif;
@@ -69,33 +70,56 @@ layout: default
     margin-bottom: 30px;
     font-weight: 600;
   }
+  .home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+  }
+  .home-button a {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  .home-button a:hover {
+    background-color: #0056b3;
+  }
 </style>
 </head>
 <body>
-<h1 class="welcome-heading">Welcome to Your Game Dashboard</h1>
+<h1 class="welcome-heading">Gamble In a Casino!!</h1>
 
 <div class="container">
   <div class="box">
-    <img src="https://img.freepik.com/free-vector/math-background_23-2148146269.jpg" alt="Mathnopoly Image">
-    <h2>Mathnonply Final</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Mathnonply-Final.html">Play Mathnopoly</a>
+    <img src="https://images.prismic.io/desplaines-rushstreetgaming/1c8e0aa3-6b2d-4f01-a49e-15b556dc0882_03253_March-Blackjack-Blowout-Email_Image_1200x650_v1_210223.jpg?auto=compress,format" alt="Blackjack">
+    <h2>Play some Blackjack</h2>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Binary-Project.html"><center>Blackjack</center></a>
   </div>
   <div class="box">
-    <img src="https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcQsJEpbrBLWAyjRR82eWUxKb4WpXjIOVB-g-KFOkyaP1zSPympYcoYd61hef9xEnRzT" alt="Tick Tack Toe Image">
-    <h2>Tick Tack Toe Hard</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/14/tictacmainpage.html">Play Tic Tac Toe!</a>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Las_Vegas_slot_machines.jpg/640px-Las_Vegas_slot_machines.jpg" alt="Slot">
+    <h2>Play some slot!!</h2>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/Slot-Machine.html"><center>Slot Machine Game</center></a>
   </div>
-  <div class="box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Blackjack21.jpg/640px-Blackjack21.jpg" alt="Binary Project Image">
-    <h2>Casino</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/14/casino_main_page.html">Gamble in a casino</a>
+    <div class="box">
+    <img src="https://crescent.edu/uploads/editor/images/blog/The_History_of_Baccarat.jpg" alt="Bakkarat">
+    <h2>PLay some Bakkarat!</h2>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/baccarat.html"><center>Bakkarat</center></a>
   </div>
-  <div class="box">
-    <img src="https://domf5oio6qrcr.cloudfront.net/medialibrary/13293/conversions/0e5d493f-4344-4f97-8b17-60a0a903eb8c-thumb.jpg" alt="Crossword Puzzles Image">
-    <h2>Crosswords</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/14/crosswordmainpage.html">Try out crosswords</a>
+    <div class="box">
+    <img src="https://c8.alamy.com/comp/D83FDG/spinning-casino-roulette-wheel-gambling-and-casino-concept-D83FDG.jpg" alt="Spin the wheel!">
+    <h2>Spin the Wheel!</h2>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/23/SPINTHEWHEEL.html">Spin the Wheel!</a>
   </div>
+</div>
+
+<div class="home-button">
+  <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
 </div>
 
 </body>
 </html>
+
+
+

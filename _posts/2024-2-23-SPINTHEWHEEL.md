@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+---
+toc: false
+comments: false
+layout: default
+---
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
