@@ -391,9 +391,16 @@ layout: default
         playerMoney = 0;
         aiMoney = 0;
         
+        // Reset player and AI rolled values
+        playerStepsMoved = 0;
+        aiStepsMoved = 0;
+        
         // Update displayed money
         document.getElementById('player-money').textContent = `Player Money: ${playerMoney}`;
         document.getElementById('ai-money').textContent = `AI Money: ${aiMoney}`;
+        
+        // Hide AI dot
+        document.getElementById('ai-dot').style.display = 'none';
         
         // Generate new initial question
         document.getElementById('current-question').textContent = generateQuestion();
@@ -401,7 +408,13 @@ layout: default
         // Move player and AI dots to initial positions
         movePlayerToPosition(playerPosition);
         moveAIToPosition(aiPosition);
+        
+        // Reset displayed rolled values
+        document.getElementById('player-steps').textContent = `Player Rolled: 0`;
+        document.getElementById('ai-steps').textContent = `AI Rolled: 0`;
     }
+
+
         function movePlayerToPosition(position) {
             const playerBox = document.getElementById(`box${position}`);
             const playerDot = document.getElementById('player');
