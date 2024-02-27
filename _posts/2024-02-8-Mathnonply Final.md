@@ -310,6 +310,46 @@ layout: default
         // Check if either player or AI reaches 500
         if (playerMoney >= 500) {
             alert("You win! You reached 500 first.");
+                const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            console.error('JWT token not found.');
+            return;
+        }
+        try {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            const decodedToken = JSON.parse(jsonPayload);
+            const userId = decodedToken.user_id;
+            // Send POST request to backend
+            const data = {
+                userId: userId,
+                points: 5
+            };
+            fetch('http://127.0.0.1:5000/leaderboard', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('POST request successful:', data);
+            })
+            .catch(error => {
+                console.error('Error making POST request:', error);
+            });
+        } catch (error) {
+            console.error('Error decoding JWT token:', error);
+        }
             resetGame();
         } else if (aiMoney >= 500) {
             alert("AI wins! AI reached 500 first.");
@@ -372,7 +412,7 @@ layout: default
                 document.getElementById('current-question').textContent = generateQuestion();
                 // Indicate player's turn
                 turnDisplay.textContent = "Your Turn";
-            }, 3000); // 3 second delay
+            }, 500); // 3 second delay
         }
 
         // Clear user's answer after submitting

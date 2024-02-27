@@ -102,7 +102,6 @@
   fetch(apiLink, {
     method: 'POST',
     body: formData, // Use formData as the body
-    mode: "cors"
   })
     .then(response => response.json())
     .then(data => {
