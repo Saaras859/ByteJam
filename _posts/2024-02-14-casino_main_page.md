@@ -100,12 +100,12 @@ layout: default
   <div class="box">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Las_Vegas_slot_machines.jpg/640px-Las_Vegas_slot_machines.jpg" alt="Slot">
     <h2>Play some slot!!</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/Slot-Machine.html"><center>Slot Machine Game</center></a>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/Slot-Machine.html"><center>Slot Machine</center></a>
   </div>
     <div class="box">
     <img src="https://crescent.edu/uploads/editor/images/blog/The_History_of_Baccarat.jpg" alt="Bakkarat">
     <h2>PLay some Bakkarat!</h2>
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/baccarat.html"><center>Bakkarat</center></a>
+    <a href="http://127.0.0.1:4100/ByteJam/2024/02/15/baccarat.html"><center>Baccarat</center></a>
   </div>
     <div class="box">
     <img src="https://c8.alamy.com/comp/D83FDG/spinning-casino-roulette-wheel-gambling-and-casino-concept-D83FDG.jpg" alt="Spin the wheel!">

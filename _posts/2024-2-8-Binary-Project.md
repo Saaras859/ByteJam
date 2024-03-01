@@ -9,7 +9,7 @@ layout: default
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title of the webpage -->
-    <title>Binary Blackjack</title>
+    <title>Blackjack</title>
     <!-- Styles for the webpage -->
     <style>
         body {
@@ -150,41 +150,12 @@ layout: default
             50% { transform: translate(0, 15px); }
             100% { transform: translate(0, -0px); } 
         }
-        .confetti {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    z-index: 1000;
-    animation: fall linear;
-}
-.rectangle {
-    background-color: #3498db;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-}
-.circle {
-    background-color: #f39c12;
-    border-radius: 50%;
-}
-.triangle {
-    background-color: #2ecc71;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-.diamond {
-    background-color: #e74c3c;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-/* Add the fall animation */
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
-}
     </style>
 </head>
 <body>
 <div class="floating">
     <!-- Title of the game -->
-    <h1 class="floating">Binary Blackjack</h1>
+    <h1 class="floating">Blackjack</h1>
 </div>
 <div class="playercardsbox" id="playercardsbox">
     <!-- Player's card box with placeholder text -->
@@ -211,41 +182,6 @@ layout: default
         <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
     </div>
 <script>
-   function confetti() {
-    // Define the number of confetti pieces you want to create
-    var numberOfConfetti = 100;
-    for (var i = 0; i < numberOfConfetti; i++) {
-        var confetti = document.createElement("div");
-        confetti.className = "confetti";
-        // Array of colors and shapes
-        var colors = ["#3498db", "#f39c12", "#2ecc71", "#e74c3c"];
-        var shapes = ["rectangle", "circle", "triangle", "diamond"];
-        // Randomly select color and shape
-        var randomColor = colors[Math.floor(Math.random() * colors.length)];
-        var randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-        // Apply selected color and shape to the confetti element
-        confetti.style.backgroundColor = randomColor;
-        confetti.classList.add(randomShape);
-        // Set position and animation properties
-        var startPosition = Math.random() * window.innerWidth;
-        var duration = Math.random() * 2 + 1;
-        confetti.style.left = startPosition + "px";
-        confetti.style.animation = `fall ${duration}s linear`;
-        // Add confetti to the body
-        document.body.appendChild(confetti);
-        // Remove confetti element after animation
-        confetti.addEventListener("animationend", function () {
-            confetti.remove();
-        });
-    }
-}
-// Function to trigger confetti
-function triggerConfetti() {
-    confetti();
-}
-    // Rest of the script remains unchanged
-</script>
-<script>
     // Game variables
     var cardcounter = 52;
     var playercardcounter = 0;
@@ -271,10 +207,10 @@ function triggerConfetti() {
         var num1 = Math.floor(Math.random()*52);
         var num2 = Math.floor(Math.random()*51);
         // Convert cards to binary and remove them from the deck
-        var card1 = cardtobinary(deck[num1]);
+        var card1 = deck[num1];
         deck.splice(num1, 1);
         cardcounter -= 1;
-        var card2 = cardtobinary(deck[num2]);
+        var card2 = deck[num2];
         deck.splice(num2, 1);
         cardcounter -= 1;
         // Display player's cards and calculate the score
@@ -290,10 +226,10 @@ function triggerConfetti() {
         var num1 = Math.floor(Math.random()*50);
         var num2 = Math.floor(Math.random()*49);
         // Convert cards to binary and remove them from the deck
-        var dealercard1 = cardtobinary(deck[num1]);
+        var dealercard1 = deck[num1];
         deck.splice(num1, 1);
         cardcounter -= 1;
-        var dealercard2 = cardtobinary(deck[num2]);
+        var dealercard2 = deck[num2];
         deck.splice(num2, 1);
         cardcounter -= 1;
         // Display dealer's cards and calculate the score
@@ -322,7 +258,7 @@ function triggerConfetti() {
                 } else {
                     value = parseInt(cardValues[i]);
                 }
-                sum += todecimal(value);
+                sum += value;
             }
         }
         // Adjust for Ace if needed
@@ -353,7 +289,7 @@ function triggerConfetti() {
                 } else {
                     value = parseInt(cardValues[i]);
                 }
-                sum += todecimal(value);
+                sum += value;
             }
         }
         // Adjust for Ace if needed
@@ -373,7 +309,7 @@ function triggerConfetti() {
             var tempnum = Math.floor(Math.random() * cardcounter);
             var temp = deck[tempnum];
             // Convert the card to binary and update the deck
-            var card = cardtobinary(temp);
+            var card = temp;
             deck.splice(tempnum, 1);
             cardcounter -= 1;
             // Display the drawn card
@@ -415,7 +351,7 @@ function triggerConfetti() {
     function getdealercard() {
         // Generate a random card index
         var tempnum = Math.floor(Math.random() * cardcounter);
-        var card = cardtobinary(deck[tempnum]);
+        var card = deck[tempnum];
         // Remove the drawn card from the deck
         deck.splice(tempnum, 1);
         cardcounter -= 1;
@@ -435,7 +371,6 @@ function triggerConfetti() {
         } else {
             if (dealerScore > 21 || playerScore > dealerScore) {
                 document.getElementById("result").innerText = "You Win!";
-                 triggerConfetti(); // Trigger confetti on win
             } else if (playerScore === dealerScore) {
                 document.getElementById("result").innerText = "It's a Tie!";
             } else {
@@ -473,89 +408,29 @@ function triggerConfetti() {
         playercards();
         dealercards();
     }
-    function cardtobinary(decimalnum) {
-        // Extract the card value and suit from the input
-        var value = decimalnum;
-        // Check if the card is an Ace ('A') or a face card (['J', 'Q', 'K', '10'])
-        if (decimalnum[0] === "A") {
-            value = 11;
-        } else if (["J", "Q", "K", "10"].includes(decimalnum[0])) {
-            value = 10;
-        }
-        // Determine the suit of the card
-        if (decimalnum[1] == 0) {
-            var suit = decimalnum[2];
-        } else {
-            var suit = decimalnum[1];
-        }
-        // Convert the card value to a decimal number
-        var decimalNumber = parseInt(value);
-        var decimaltemp = parseInt(value);
-        // Convert the decimal number to binary using bitwise operations
-        var binaryResult = "";
-        while (decimalNumber > 0) {
-            var remainder = decimalNumber % 2;
-            binaryResult = remainder + binaryResult;
-            decimalNumber = Math.floor(decimalNumber / 2);
-        }
-        // Handle special case when the card value is 0
-        if (decimaltemp == 0) {
-            binaryResult = "0";
-        }
-        // Ensure the binary representation is 5 digits long and append the suit
-        var output = String(binaryResult) + suit;
-        while (output.length != 5) {
-            output = "0" + output;
-        }
-        return output;
-    }
-    function tobinary(decimalnum) {
-        // Convert decimal to binary using bitwise operations
-        var decimalNumber = parseInt(decimalnum);
-        var decimaltemp = parseInt(decimalnum);
-        var binaryResult = "";
-        while (decimalNumber > 0) {
-            var remainder = decimalNumber % 2;
-            binaryResult = remainder + binaryResult;
-            decimalNumber = Math.floor(decimalNumber / 2);
-        }
-        // Handle special case when the decimal number is 0
-        if (decimaltemp == 0) {
-            binaryResult = "0";
-        }
-        return binaryResult;
-    }
-    function cardtodecimal(binarynum) {
-        // Implement this function if needed
-    }
-    function todecimal(binarynum) {
-        // Convert binary to decimal using the parseInt function
-        var decimalResult = parseInt(binarynum, 2);
-        return decimalResult;
-    }
-    function calculateSumInBinary(cardsboxId) {
+    function calculateSum(cardsboxId) {
         var cardValues = document.getElementById(cardsboxId).textContent.match(/\d+|A|J|Q|K/g);
         var sum = 0;
         if (cardValues) {
             for (var i = 0; i < cardValues.length; i++) {
                 var value = (cardValues[i] === "A") ? 11 : (["J", "Q", "K", "10"].includes(cardValues[i]) ? 10 : parseInt(cardValues[i]));
-                sum += todecimal(value);
+                sum += value
             }
         }
         // Convert the sum to binary
-        return tobinary(sum);
+        return sum
     }
     function displaySums() {
         // Display the sum boxes
         document.getElementById("playersumbox").style.display = "block";
         document.getElementById("dealersumbox").style.display = "block";
         // Calculate and display player sum in binary
-        var playerSum = calculateSumInBinary("playercardsbox");
-        var playerSumdecimal = todecimal(playerSum)
+        var playerSum = calculateSum("playercardsbox");
+        var playerSumdecimal = playerSum
         document.getElementById("playersumbox").innerText = "Player Sum: " + playerSum + " (" + playerSumdecimal + ")";
         // Calculate and display dealer sum in binary
-        var dealerSum = calculateSumInBinary("dealercardsbox");
-        var dealerSumdecimal = todecimal(dealerSum)
+        var dealerSum = calculateSum("dealercardsbox");
+        var dealerSumdecimal = dealerSum
         document.getElementById("dealersumbox").innerText = "Dealer Sum: " + dealerSum + " (" + dealerSumdecimal + ")";
     }
 // Function calls to initialize the game
